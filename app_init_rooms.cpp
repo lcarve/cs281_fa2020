@@ -27,8 +27,7 @@ Room* initNexus()
     std::string str = "the Nexus";
     pRoom->setName(str);
 
-    str = "The Nexus is a portal to other dimensions.\
-           There is a dragon here";
+    str = "The Nexus is a portal to other dimensions.";
     pRoom->setEntryText(str);
 
     str = "You are leaving the Nexus.";
