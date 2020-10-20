@@ -32,6 +32,8 @@ Room* g_pMagicMountains = nullptr;
 */
 int main()
 {
+    Bogie bogie;
+
     // accumulate messages for display each game loop iteration
     std::vector<std::string> messageQueue;
 
