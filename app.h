@@ -13,6 +13,7 @@
 #include "Player.h"
 #include "Treasure.h"
 #include "Weapon.h"
+#include "Bogie.h"
 
 // app.cpp: global variables
 extern Room* g_pNexus;

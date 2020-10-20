@@ -23,6 +23,7 @@ protected:
     int m_points;                         // accumulated points
     std::vector<Treasure*> m_pTreasureV;  // accumulated Treasure
     std::vector<Weapon*> m_pWeaponV;      // accumulated Weapons
+//    std::vector<Bogie*> m_pBogieV;        // Bogies
 
     // mixed type carryable items vector for optional use
     std::vector<CarryIt*> m_pCarryItV;
@@ -58,6 +59,8 @@ public:
     int getWeaponCount() const;
     int getWeaponInfo(std::vector<Weapon*>& pWV) const;
     bool removeAllWeapon();
+
+    int getBogieCount();
 
 };
 
