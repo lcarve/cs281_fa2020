@@ -71,15 +71,6 @@ private:
     std::string m_entryText;
     std::string m_exitText;
 
-    // Room's Treasure vector
-    std::vector<Treasure*> m_pTreasureV;
-
-    // Room's Weapon vector
-    std::vector<Weapon*> m_pWeaponV;
-
-    // Room's mixed carryable items vector for optional use
-    std::vector<CarryIt*> m_pCarryItV;
-
 public:
     Room();
     // name is a call by value string parameter
