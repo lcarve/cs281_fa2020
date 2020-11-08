@@ -2,7 +2,7 @@
 * Container.cpp
 * CS 281-0798, Fall 2020
 *
-* Container pure abstract class definition
+* Container abstract class definition
 *******************************************************************************
 */
 #include <string>
@@ -17,73 +17,9 @@
 //***********************************************************
 Container::Container()
 {
-    m_id = -1;
+    m_id = static_cast<int>(GENERIC_CONTAINER);
     m_name = "container";
-    m_points = 0;               // accumulated points
 }
-
-//***********************************************************
-// setId() declared as pure virtual
-//***********************************************************
-
-//***********************************************************
-// getId()
-//***********************************************************
-int Container::getId() const
-{
-    return m_id;
-}
-
-//***********************************************************
-// setName()
-//
-// copies passed string into member string 
-//***********************************************************
-bool Container::setName(std::string& name)
-{
-    m_name = name;
-    return true;
-}
-
-//***********************************************************
-// getName()
-//
-// copies member string into caller's string    
-//***********************************************************
-bool Container::getName(std::string& str) const
-{
-    str = m_name;
-    return true;
-}
-
-//***********************************************************
-// addPoints()
-//
-// adds passed value to container's points
-//***********************************************************
-int Container::addPoints(int points) 
-{
-    m_points += points;
-    return true;
-}
-
-//***********************************************************
-// setPoints()
-//
-// sets container's points to passed value
-//***********************************************************
-bool Container::setPoints(int points)
-{
-    m_points = points;
-    return true;
-}
-
-//***********************************************************
-// getPoints()
-//
-// returns how many points the container has
-//***********************************************************
-int Container::getPoints() const { return m_points; }
 
 //***********************************************************
 // addTreasure()
@@ -113,7 +49,6 @@ Treasure* Container::removeTreasure()
         return nullptr;
 
     Treasure* pT = m_pTreasureV.back();
-    // remove Treasure from vector
     m_pTreasureV.pop_back();
 
     return pT;
@@ -136,16 +71,14 @@ int Container::getTreasureCount() const
 //
 // return number of Treasure elements 
 //***********************************************************
-int Container::getTreasureInfo(std::vector<Treasure*>& tV) const
+int Container::getTreasureInfo(std::vector<Treasure*>& tV)
 {
     if (m_pTreasureV.size() == 0)
         return 0;
 
     // copy values - prevent direct access to Container's vector
     for (Treasure* t : m_pTreasureV)
-    {
         tV.push_back(t);
-    }
 
     return tV.size();
 }
@@ -179,7 +112,7 @@ int Container::addWeapon(Weapon* pW)
 // if the Weapon vector is not empty,
 //  1) get the last Weapon in the vector
 //  2) remove one Weapon from vector
-//  3) return pointer to Treasure removed or nullptr
+//  3) return pointer to Weapon removed or nullptr
 //***********************************************************
 Weapon* Container::removeWeapon()
 {
@@ -187,7 +120,6 @@ Weapon* Container::removeWeapon()
         return nullptr;
 
     Weapon* pW = m_pWeaponV.back();
-    // remove Treasure from vector
     m_pWeaponV.pop_back();
 
     return pW;
@@ -210,16 +142,14 @@ int Container::getWeaponCount() const
 //
 // return number of Weapon elements 
 //***********************************************************
-int Container::getWeaponInfo(std::vector<Weapon*>& wV) const
+int Container::getWeaponInfo(std::vector<Weapon*>& wV)
 {
     if (m_pWeaponV.size() == 0)
         return 0;
 
     // copy values - prevent direct access to Container's vector
     for (Weapon* w : m_pWeaponV)
-    {
         wV.push_back(w);
-    }
 
     return wV.size();
 }
@@ -230,6 +160,77 @@ int Container::getWeaponInfo(std::vector<Weapon*>& wV) const
 bool Container::removeAllWeapon()
 {
     m_pWeaponV.clear();
+    return true;
+}
+
+//***********************************************************
+// addBogie()
+//
+// adds a Bogie instance pointer to the container's
+// vector of Bogie instance pointers
+//
+// returns the number of Weapons in the vector
+//***********************************************************
+int Container::addBogie(Bogie* pB)
+{
+    m_pBogieV.push_back(pB);
+    return m_pBogieV.size();
+}
+
+//***********************************************************
+// removeBogie()
+//
+// if the Bogie vector is not empty,
+//  1) get the last Bogie in the vector
+//  2) remove one Bogie from vector
+//  3) return pointer to Bogie removed or nullptr
+//***********************************************************
+Bogie* Container::removeBogie()
+{
+    if (m_pBogieV.size() == 0)
+        return nullptr;
+
+    Bogie* pB = m_pBogieV.back();
+    m_pBogieV.pop_back();
+
+    return pB;
+}
+
+//***********************************************************
+// getBogieCount()
+//
+// return number of Bogies in this Container
+//***********************************************************
+int Container::getBogieCount() const
+{
+    return m_pBogieV.size();
+}
+
+//***********************************************************
+// getBogieInfo()
+//
+// copy Bogie vector elements to passed vector
+//
+// return number of Bogie elements 
+//***********************************************************
+int Container::getBogieInfo(std::vector<Bogie*>& bV)
+{
+    if (m_pBogieV.size() == 0)
+        return 0;
+
+    // copy values - prevent direct access to Container's vector
+    for (Bogie* b : m_pBogieV)
+        bV.push_back(b);
+
+    return bV.size();
+}
+
+//***********************************************************
+// removeAllBogie()
+//***********************************************************
+bool Container::removeAllBogie()
+{
+    m_pBogieV.clear();
     return true;
 }
 

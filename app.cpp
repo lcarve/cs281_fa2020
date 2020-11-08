@@ -9,6 +9,8 @@
 #include <sstream>
 #include <vector>
 #include <array>
+#include <cstdlib>
+#include <time.h>
 
 // app common include file
 #include "app.h"
@@ -25,6 +27,8 @@ Room* g_pLakeHoudini    = nullptr;
 Room* g_pSiliconDesert  = nullptr;
 Room* g_pMagicMountains = nullptr;
 
+Player* pForNewFeature;
+
 /******************************************************************************
 * int main()
 * entry point
@@ -32,10 +36,14 @@ Room* g_pMagicMountains = nullptr;
 */
 int main()
 {
+    // seed random number generator for CarryIt power values
+    time_t t;
+    srand(static_cast<unsigned int>(time(&t)));
+
     // accumulate messages for display each game loop iteration
     std::vector<std::string> messageQueue;
 
-    // init game rooms with text, Treasure, and Weapons
+    // init game rooms with text, Treasure, Weapons, Bogies
     g_pNexus = initNexus();
     g_pBayOfLune = initBayOfLune();
     g_pLakeHoudini = initLakeHoudini();
@@ -56,15 +64,16 @@ int main()
 
     // #TODO your game name goes here
     std::cout << "\nCS 281 Fall 2020 Game Project\n";
-    std::cout << "What's your name? ";
-    std::cin >> playerName;
+//    std::cout << "What's your name? ";
+//    std::cin >> playerName;
+    playerName = "boo";
 
     // display app version
     messageQueue.push_back("Welcome " + playerName + "!\n");
 
     // create Player, award Room points,
     // and queue messages for display
-    Player* pPlayer = new Player(playerName);
+    Player* pPlayer = new Player(playerName, PLAYER_LIVES);
     visitRoom(pPlayer, pRoom, messageQueue);
 
     // display things Player sees in this Room
@@ -85,11 +94,11 @@ int main()
     {
         userCmd = menuOption();
 
-// handle move commands first
-        // translate char command to int direction constant
+        // handle move commands first
+                // translate char command to int direction constant
         direction = mapMoveCommand(userCmd);
         if (direction != ROOM_DEAD_END)
-            pRoom = movePlayer(pPlayer, pRoom, direction, messageQueue);
+                pRoom = movePlayer(pPlayer, pRoom, direction, messageQueue);
         // L)ook command
         else if (userCmd == 'l')
             lookAllDirections(pRoom, messageQueue);
@@ -102,9 +111,12 @@ int main()
         // T)ake weapon command
         else if (userCmd == 't')
             grabWeapon(pPlayer, pRoom, messageQueue);
-        // T)ake weapon command
+        // deF)end command forces q)uit if Player out of lives
         else if (userCmd == 'f')
-            messageQueue.push_back("#TODO Can't use weaponry yet!\n");
+            userCmd = defendSelf(pPlayer, pRoom, messageQueue);
+        // drO)p weapon command
+        else if (userCmd == 'o')
+            dropWeapon(pPlayer, pRoom, messageQueue);
         // I)nfo command
         else if (userCmd == 'i')
             getAllInfo(pPlayer, pRoom, messageQueue);
@@ -114,10 +126,6 @@ int main()
 // handle bad input
         else
             messageQueue.push_back("\aSorry, I don't know that command.");
-
-// display after every iteration
-        if (userCmd != 'i' && userCmd != 'q')
-            getInventory(pRoom, messageQueue);
 
         displayMessageQueue(messageQueue);
 
@@ -131,7 +139,7 @@ int main()
 
     system("pause");
 
-   return 0;
+    return 0;
 }
 
 /******************************************************************************
@@ -200,9 +208,10 @@ char menuOption()
 
     // display game menu
     std::cout << std::endl;
-    std::cout << "N)orth, S)outh, E)ast, W)est, U)p, D)own,\n";
-    std::cout << "L)ook, G)et treasure, dR)op treasure,\n";
-    std::cout << "T)ake weapon, deF)end, I)nfo, Q)uit ? ";
+    std::cout << "N)orth, S)outh, E)ast, W)est, U)p, D)own, L)ook,\n";
+    std::cout << "G)et treasure, dR)op treasure,\n";
+    std::cout << "T)ake weapon, deF)end, drO)p weapon,\n";
+    std::cout << "I)nfo, Q)uit ? ";
 
     // get user command
     std::cin >> cmd;

@@ -17,9 +17,11 @@
 //
 // overload constructor
 //***********************************************************
-Player::Player(std::string name)
+Player::Player(std::string name, int nLives)
 {
+    m_id = static_cast<int>(PLAYER_CONTAINER);
     m_name = name;
+    m_nLives = nLives;
 }
 
 //***********************************************************
@@ -27,12 +29,27 @@ Player::Player(std::string name)
 //
 // constructor
 //***********************************************************
-Player::Player() : Player("player 1") { }
+Player::Player() : Player("player 1", 1) { }
 
 //***********************************************************
-// setId()
+// getLives()
 //***********************************************************
-bool Player::setId(int id) { m_id = id; return true; }
+int Player::getLives() const { return m_nLives; }
+
+//***********************************************************
+// setLives()
+//***********************************************************
+int Player::setLives(int n) { m_nLives = n; return n; }
+
+//***********************************************************
+// addLives()
+//***********************************************************
+int Player::addLives(int n) { m_nLives += n; return m_nLives; }
+
+//***********************************************************
+// loseLife()
+//***********************************************************
+int Player::loseLife() { m_nLives--;  return m_nLives; }
 
 //***********************************************************
 // addRoomVisit()

@@ -11,21 +11,20 @@
 #include <string>
 #include <vector>
 
-#include "CarryIt.h"
 #include "Treasure.h"
 #include "Weapon.h"
+#include "Bogie.h"
 
-class Container
+#define ROOM_CONTAINER      'R'
+#define PLAYER_CONTAINER    'P'
+#define GENERIC_CONTAINER   'C'
+
+class Container : public Element
 {
 protected:
-    int m_id;                             // internal use
-    std::string m_name;                   // user supplied name
-    int m_points;                         // accumulated points
     std::vector<Treasure*> m_pTreasureV;  // accumulated Treasure
     std::vector<Weapon*> m_pWeaponV;      // accumulated Weapons
-
-    // mixed type carryable items vector for optional use
-    std::vector<CarryIt*> m_pCarryItV;
+    std::vector<Bogie*> m_pBogieV;        // accumulated Bogies
 
 public:
     Container();
@@ -33,31 +32,26 @@ public:
     // so destructor not needed
     //~Container();
 
-    // derived classes must implement this member function
-    virtual bool setId(int id) = 0;
-
-    int getId() const;
-
-    bool setName(std::string& name);
-    bool getName(std::string& str) const;
-
-    int addPoints(int points);
-    bool setPoints(int points);
-    int getPoints() const;
-
-    // Treasure management support
+    // Treasure management
     int addTreasure(Treasure* pT);
     Treasure* removeTreasure();
     int getTreasureCount() const;
-    int getTreasureInfo(std::vector<Treasure*>& pTV) const;
+    int getTreasureInfo(std::vector<Treasure*>& pTV);
     bool removeAllTreasure();
 
-    // Weapon management support
+    // Weapon management
     int addWeapon(Weapon* pT);
     Weapon* removeWeapon();
     int getWeaponCount() const;
-    int getWeaponInfo(std::vector<Weapon*>& pWV) const;
+    int getWeaponInfo(std::vector<Weapon*>& pWV);
     bool removeAllWeapon();
+
+    // Bogie management
+    int addBogie(Bogie* pB);
+    Bogie* removeBogie();
+    int getBogieCount() const;
+    int getBogieInfo(std::vector<Bogie*>& pBV);
+    bool removeAllBogie();
 
 };
 

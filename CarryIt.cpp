@@ -2,13 +2,17 @@
 * CarryIt.cpp
 * CS 281-0798, Fall 2020
 *
-* CarryIt pure abstract class definition
+* CarryIt abstract class definition
 *******************************************************************************
 */
 #include <string>
+#include <cstdlib>
 
 #include "CarryIt.h"
 
+// default carryable element characteristics
+#define MAX_POWER    5
+#define MIN_POWER    3
 
 //***********************************************************
 // CarryIt()
@@ -17,75 +21,38 @@
 //***********************************************************
 CarryIt::CarryIt()
 {
-    m_id = -1;
+    m_id = static_cast<int>(GENERIC_CARRYIT);
     m_name = "carry me";
-    m_text = "";
-    m_points = 0;
-    m_roomNow = 0;
-    m_playerNow = 0;
+
+    m_power = rand() % MAX_POWER + MIN_POWER;
+    m_roomInfo = 0;
+    m_playerInfo = 0;
 }
 
 //***********************************************************
-// setId() declared as pure virtual
+// setPower()
 //***********************************************************
-
-//***********************************************************
-// getId() 
-//***********************************************************
-int CarryIt::getId() const
+bool CarryIt::setPower(int power)
 {
-    return m_id;
-}
-
-//***********************************************************
-// setName()
-//***********************************************************
-bool CarryIt::setName(std::string& name)
-{
-    m_name = name;
+    m_power = power;
     return true;
 }
 
 //***********************************************************
-// getName()
+// getPower()
 //***********************************************************
-bool CarryIt::getName(std::string& name) const
+int CarryIt::getPower() const
 {
-    name = m_name;
-    return true;
+    return m_power;
 }
 
 //***********************************************************
-// setPoints()
+// addPower()
+//
+// returns updated power setting
 //***********************************************************
-bool CarryIt::setPoints(int points)
+int CarryIt::addPower(int morePower)
 {
-    m_points = points;
-    return true;
-}
-
-//***********************************************************
-// getPoints()
-//***********************************************************
-int CarryIt::getPoints() const
-{
-    return m_points;
-}
-
-//***********************************************************
-// setText()
-//***********************************************************
-bool CarryIt::setText(std::string& text)
-{
-    m_text = text;
-    return true;
-}
-
-//***********************************************************
-// getText()
-//***********************************************************
-bool CarryIt::getText(std::string& text) const
-{
-    text = m_text;
-    return true;
+    m_power += morePower;
+    return m_power;
 }

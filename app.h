@@ -8,11 +8,16 @@
 #ifndef APP_H
 #define APP_H
 
+// constants
+#define PLAYER_DEFEATED -1
+#define PLAYER_LIVES     3
+
 // classes used
 #include "Room.h"
 #include "Player.h"
 #include "Treasure.h"
 #include "Weapon.h"
+#include "Bogie.h"
 
 // app.cpp: global variables
 extern Room* g_pNexus;
@@ -32,10 +37,12 @@ Room* initMagicMountains();
 void initRoomMap();
 
 // app_player.cpp: Player initialization and management functions
-bool grabTreasure(Player* pPlayer, Room* pRoom, std::vector<std::string>& msgQ);
-bool dropTreasure(Player* pPlayer, Room* pRoom, std::vector<std::string>& msgQ);
-bool grabWeapon(Player* pPlayer, Room* pRoom, std::vector<std::string>& msgQ);
-bool lookAllDirections(Room* pRoom, std::vector<std::string>& msgQ);
+bool grabTreasure(Player* pP, Room* pR, std::vector<std::string>& msgQ);
+bool dropTreasure(Player* pP, Room* pR, std::vector<std::string>& msgQ);
+bool grabWeapon(Player* pP, Room* pR, std::vector<std::string>& msgQ);
+bool dropWeapon(Player* pP, Room* pR, std::vector<std::string>& msgQ);
+char defendSelf(Player* pP, Room* pR, std::vector<std::string>& msgQ);
+bool lookAllDirections(Room* pR, std::vector<std::string>& msgQ);
 Room* movePlayer(Player* pP, Room* pR, int direction, std::vector<std::string>& msgQ);
 bool visitRoom(Player* pP, Room* pR, std::vector<std::string>& msgQ);
 

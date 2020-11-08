@@ -22,7 +22,7 @@
 //***********************************************************
 Room::Room(std::string name)
 {
-    m_id = static_cast<int>('r');   // 'r' for Room
+    m_id = static_cast<int>(ROOM_CONTAINER);
     m_name = name;
     m_entryText = "entering the " + m_name;
     m_exitText = "exiting the " + m_name;
@@ -80,14 +80,9 @@ Room::Room(std::string name)
 Room::Room() : Room("room") {}
 
 //***********************************************************
-// setId()
-//***********************************************************
-bool Room::setId(int id) { m_id = id; return true; }
-
-//***********************************************************
 // setEntryText()
 //***********************************************************
-bool Room::setEntryText(std::string& entryText)
+bool Room::setEntryText(const std::string& entryText)
 {
     m_entryText = entryText;
     return true;
@@ -105,7 +100,7 @@ bool Room::getEntryText(std::string& str) const
 //***********************************************************
 // setExitText()
 //***********************************************************
-bool Room::setExitText(std::string& exitText)
+bool Room::setExitText(const std::string& exitText)
 {
     m_exitText = exitText;
     return true;
@@ -123,7 +118,7 @@ bool Room::getExitText(std::string& str) const
 //***********************************************************
 // setDirectionText()
 //***********************************************************
-bool Room::setDirectionText(int direction, std::string& str)
+bool Room::setDirectionText(int direction, const std::string& str)
 {
     m_roomTextArray[direction] = str;
     return true;

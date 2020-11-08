@@ -18,17 +18,20 @@
 class Player : public Container
 {
 private:
+    int m_nLives;   // number of lives
     std::vector<Room*> m_pRoomsVisitedV;
 
 public:
     Player();
-    Player(std::string name);
+    Player(std::string name, int nLives);
     // players will persist for app lifetime
     // so destructor not needed
     //~Player();
 
-    // code hooks for multiplayer support
-    bool setId(int id);
+    int getLives() const;
+    int setLives(int n);
+    int addLives(int n);
+    int loseLife();
 
     // Room visit tracking support
     int addRoomVisit(Room* pR);
@@ -40,7 +43,6 @@ public:
 
     int addWeapon(Weapon* pW);
     Weapon* removeWeapon();
-    int useWeapon(Weapon* pW);
 };
 
 #endif

@@ -1,31 +1,29 @@
 /******************************************************************************
-* Treasure.h
+* Bogie.h
 * CS 281-0798, Fall 2020
 *
-* Treasure class declaration
+* Bogie class declaration
 *******************************************************************************
 */
-#ifndef TREASURE_H
-#define TREASURE_H
+#ifndef BOGIE_H
+#define BOGIE_H
 
 #include <string>
 
-// base class declaration
+#include "Element.h"
 #include "CarryIt.h"
 
 //----------------------------------------------------------
-// Treasure class derived from base class for carried items
+// Bogie class: derived from CarryIt and Container classes
 //----------------------------------------------------------
-class Treasure : public CarryIt
+class Bogie : public CarryIt
 {
-private:
-
 public:
-    Treasure();
-    Treasure(std::string tName);
-    // Treasure persists for app lifetime
+    Bogie();
+    Bogie(std::string name);
+    // Bogie instances will persist for app lifetime
     // so destructor not needed
-    //~Treasure();
+    //~Bogie();
 
 };
 

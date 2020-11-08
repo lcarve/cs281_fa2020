@@ -20,7 +20,6 @@ class Weapon : public CarryIt
 {
 private:
     int m_usesRemaining;
-    int m_powerRating;
 
 public:
     Weapon();
@@ -32,12 +31,6 @@ public:
     bool setUsesRemaining(int uses);
     int getUsesRemaining() const;
     int addUsesRemaining(int uses);
-
-    bool setPower(int power);
-    int getPower() const;
-
-    // must implement pure virtual base class member function
-    bool setId(int id);
 };
 
 #endif

@@ -81,17 +81,14 @@ public:
     // so destructor not needed
     //~Room();
 
-    // must implement pure virtual base class member function
-    bool setId(int id);
-
-    bool setEntryText(std::string& str);
+    bool setEntryText(const std::string& str);
     bool getEntryText(std::string& str) const;
     
-    bool setExitText(std::string& str);
+    bool setExitText(const std::string& str);
     bool getExitText(std::string& str) const;
 
     // see direction constants above!
-    bool setDirectionText(int direction, std::string& str);
+    bool setDirectionText(int direction, const std::string& str);
     bool getDirectionText(int direction, std::string& str) const;
 
     // see direction constants above!

@@ -19,68 +19,95 @@
 */
 int getInventory(Container* pC, std::vector<std::string>& msgQ)
 {
-    int total = 0;      // return value accumulator
-    std::string str;    // message buffer
+    int total = 0;              // return value accumulator
+    std::string str;            // message buffers
+    char cType = pC->getId();   // ROOM_CONTAINER or PLAYER_CONTAINER
 
-    // vector to be filled with Treasure names and text
-    std::vector<Treasure*>pTreasureV;
+    // vector to be filled with Bogie names and text
+    std::vector<Bogie*> pBogieV;
+    int nBogie = pC->getBogieInfo(pBogieV);
+    total += nBogie;
 
-    int nTreasure = pC->getTreasureInfo(pTreasureV);
-    total += nTreasure;
+    // display Bogies present
+    if (nBogie > 0)
+    {
+        std::stringstream ss;
+
+        // is this Container a Room?
+        if (cType == ROOM_CONTAINER)
+            ss << "There is an unfriendly here..\n";
+        else if (nBogie > 1)
+            ss << "You've defeated " << nBogie << " unfriendlies!\n";
+        else
+            ss << "You've defeated an unfriendly!\n";
+
+        // display Bogie name and power
+        for (Bogie* pB : pBogieV)
+        {
+            pB->getName(str);
+            ss << str << " [" << pB->getPower()
+                << "] (" << pB->getPoints() << ")\n";
+        }
+
+        msgQ.push_back(ss.str());
+    }
 
     // vector to be filled with Weapon names and text
-    std::vector<Weapon*>pWeaponV;
-
+    std::vector<Weapon*> pWeaponV;
     int nWeapon = pC->getWeaponInfo(pWeaponV);
     total += nWeapon;
-
-    // #TODO
-    int nBogies = 0;
-    total += nBogies;
-
-    // #TODO
-    int nMagicWords = 0;
-    total += nMagicWords;
-
-    // display Treasure available here
-    if (nTreasure > 0)
-    {
-        // is this Container a Room?
-        if (pC->getId() == 'r')
-            str = "There is treasure here..";
-        else
-            str = "You have treasure!";
-        msgQ.push_back(str);
-
-        for (Treasure* pT : pTreasureV)
-        {
-            pT->getName(str);
-            msgQ.push_back(str);
-        }
-    }
 
     // display weaponry available here
     if (nWeapon > 0)
     {
-        // blank line between treasure and weapon lists
-        if (nTreasure !=0)
-            msgQ.push_back("\n");
+        std::stringstream ss;
 
         // is this Container a Room?
-        if (pC->getId() == 'r')
-            str = "There is weaponry here..";
+        if (cType == ROOM_CONTAINER)
+            ss << "There is weaponry here..\n";
         else
-            str = "You have weaponry!";
-        msgQ.push_back(str);
+            ss << "You have weaponry!\n";
 
+        // display Weapon name, power, and points
         for (Weapon* pW : pWeaponV)
         {
             pW->getName(str);
-            msgQ.push_back(str);
+            ss << str << " [" << pW->getPower() 
+                << "] (" << pW->getPoints() << ")\n";
         }
 
-        msgQ.push_back("\n");
+        msgQ.push_back(ss.str());
     }
+
+    // vector to be filled with Treasure names and text
+    std::vector<Treasure*>pTreasureV;
+    int nTreasure = pC->getTreasureInfo(pTreasureV);
+    total += nTreasure;
+
+    // display Treasure available here
+    if (nTreasure > 0)
+    {
+        std::stringstream ss;
+
+        // is this Container a Room?
+        if (cType == ROOM_CONTAINER)
+            ss << "There is treasure here..\n";
+        else
+            ss << "You have treasure!\n";
+
+        // display Treasure name only
+        for (Treasure* pT : pTreasureV)
+        {
+            pT->getName(str);
+            ss << str << " (" << pT->getPoints() << ")\n";
+        }
+
+        msgQ.push_back(ss.str());
+    }
+
+    // #TODO
+    int nMagicWord = 0;
+    total += nMagicWord;
 
     return total;
 }
@@ -93,9 +120,10 @@ int getInventory(Container* pC, std::vector<std::string>& msgQ)
 */
 bool getInfo(Player* pP, Room* pR, std::vector<std::string>& msgQ)
 {
-    // display Player points
+    // display Player points and number of lives left
     std::stringstream ss;
-    ss << "\nYou have " << pP->getPoints() << " points.\n";
+    ss << "You have " << pP->getPoints() << " points.\n";
+    ss << "You have " << pP->getLives() << " lives left.\n\n";
 
     // display Room carryable items
     getInventory(pR, msgQ);

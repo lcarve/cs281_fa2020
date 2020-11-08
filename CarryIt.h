@@ -8,18 +8,22 @@
 #ifndef CARRYIT_H
 #define CARRYIT_H
 
+#include "Element.h"
+
+#define TREASURE_CARRYIT    't'
+#define WEAPON_CARRYIT      'w'
+#define BOGIE_CARRYIT       'b'
+#define GENERIC_CARRYIT     'c'
+
 //----------------------------------------------------------
-// CarryIt class: pure abstract base class for carried items
+// CarryIt class: abstract base class for carried items
 //----------------------------------------------------------
-class CarryIt
+class CarryIt : public Element
 {
 protected:
-    int m_id;
-    std::string m_name;
-    std::string m_text;
-    int m_points;
-    int m_roomNow;
-    int m_playerNow;
+    int m_power;
+    int m_roomInfo;
+    int m_playerInfo;
 
 public:
     CarryIt();
@@ -27,20 +31,9 @@ public:
     // so destructor not needed
     //~CarryIt();
 
-    // derived classes must implement this member function
-    virtual bool setId(int id) = 0;
-
-    int getId() const;
-
-    bool setName(std::string& name);
-    bool getName(std::string& name) const;
-
-    bool setPoints(int points);
-    int getPoints() const;
-
-    bool setText(std::string& text);
-    bool getText(std::string& text) const;
-
+    bool setPower(int power);
+    int getPower() const;
+    int addPower(int morePower);
 };
 
 #endif

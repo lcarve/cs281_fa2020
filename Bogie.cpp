@@ -1,33 +1,29 @@
 /******************************************************************************
-* Treasure.cpp
+* Bogie.cpp
 * CS 281-0798, Fall 2020
 *
-* Treasure class definition
+* Bogie derived class definition
 *******************************************************************************
 */
 #include <string>
 
-#include "CarryIt.h"
-#include "Treasure.h"
+#include "Bogie.h"
+
 
 //***********************************************************
-// Treasure(string tName)
+// Bogie()
 //
 // overload constructor
-//
-// tName is a call by value string parameter
-// to allow passing string literals
 //***********************************************************
-Treasure::Treasure(std::string tName)
-{
-    m_id = static_cast<int>(TREASURE_CARRYIT);
-    m_name = tName;
+Bogie::Bogie(std::string name)
+{ 
+    m_id = static_cast<int>(BOGIE_CARRYIT);
+    m_name = name;
 }
 
 //***********************************************************
-// Treasure()
+// Bogie()
 //
 // constructor
 //***********************************************************
-Treasure::Treasure() : Treasure("untold treasure") { }
-
+Bogie::Bogie() : Bogie("bogie") { }
