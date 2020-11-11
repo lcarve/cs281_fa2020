@@ -36,6 +36,7 @@ Player* pForNewFeature;
 */
 int main()
 {
+
     // seed random number generator for CarryIt power values
     time_t t;
     srand(static_cast<unsigned int>(time(&t)));
@@ -50,6 +51,10 @@ int main()
     g_pSiliconDesert = initSiliconDesert();
     g_pMagicMountains = initMagicMountains();
     // init game rooms done
+
+    // #TODO
+    //Weapon* pTest = selectWeapon("Sword");
+
 
     // all global pointers now valid for use as Room map pointers
     initRoomMap();

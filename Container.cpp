@@ -45,13 +45,18 @@ int Container::addTreasure(Treasure* pT)
 //***********************************************************
 Treasure* Container::removeTreasure()
 {
-    if (m_pTreasureV.size() == 0)
-        return nullptr;
+    return removeItem(m_pTreasureV);
+}
 
-    Treasure* pT = m_pTreasureV.back();
-    m_pTreasureV.pop_back();
-
-    return pT;
+//***********************************************************
+// selectTreasure()
+//
+// if the Treasure vector is not empty,
+//      get the Treasure that matches the passed name string
+//***********************************************************
+Treasure* Container::selectTreasure(const std::string& tName)
+{
+    return selectItem(tName, m_pTreasureV);
 }
 
 //***********************************************************
@@ -73,14 +78,7 @@ int Container::getTreasureCount() const
 //***********************************************************
 int Container::getTreasureInfo(std::vector<Treasure*>& tV)
 {
-    if (m_pTreasureV.size() == 0)
-        return 0;
-
-    // copy values - prevent direct access to Container's vector
-    for (Treasure* t : m_pTreasureV)
-        tV.push_back(t);
-
-    return tV.size();
+    return getItemInfo(tV, m_pTreasureV);
 }
 
 //***********************************************************
@@ -116,13 +114,18 @@ int Container::addWeapon(Weapon* pW)
 //***********************************************************
 Weapon* Container::removeWeapon()
 {
-    if (m_pWeaponV.size() == 0)
-        return nullptr;
+    return removeItem(m_pWeaponV);
+}
 
-    Weapon* pW = m_pWeaponV.back();
-    m_pWeaponV.pop_back();
-
-    return pW;
+//***********************************************************
+// selectWeapon()
+//
+// if the Weapon vector is not empty,
+//      get the Weapon that matches the passed name string
+//***********************************************************
+Weapon* Container::selectWeapon(const std::string& wName)
+{
+    return selectItem(wName, m_pWeaponV);
 }
 
 //***********************************************************
@@ -144,14 +147,7 @@ int Container::getWeaponCount() const
 //***********************************************************
 int Container::getWeaponInfo(std::vector<Weapon*>& wV)
 {
-    if (m_pWeaponV.size() == 0)
-        return 0;
-
-    // copy values - prevent direct access to Container's vector
-    for (Weapon* w : m_pWeaponV)
-        wV.push_back(w);
-
-    return wV.size();
+    return getItemInfo(wV, m_pWeaponV);
 }
 
 //***********************************************************
@@ -187,13 +183,18 @@ int Container::addBogie(Bogie* pB)
 //***********************************************************
 Bogie* Container::removeBogie()
 {
-    if (m_pBogieV.size() == 0)
-        return nullptr;
+    return removeItem(m_pBogieV);
+}
 
-    Bogie* pB = m_pBogieV.back();
-    m_pBogieV.pop_back();
-
-    return pB;
+//***********************************************************
+// selectBogie()
+//
+// if the Bogie vector is not empty,
+//      get the Bogie that matches the passed name string
+//***********************************************************
+Bogie* Container::selectBogie(const std::string& bName)
+{
+    return selectItem(bName, m_pBogieV);
 }
 
 //***********************************************************
@@ -215,14 +216,7 @@ int Container::getBogieCount() const
 //***********************************************************
 int Container::getBogieInfo(std::vector<Bogie*>& bV)
 {
-    if (m_pBogieV.size() == 0)
-        return 0;
-
-    // copy values - prevent direct access to Container's vector
-    for (Bogie* b : m_pBogieV)
-        bV.push_back(b);
-
-    return bV.size();
+    return getItemInfo(bV, m_pBogieV);
 }
 
 //***********************************************************
@@ -232,5 +226,79 @@ bool Container::removeAllBogie()
 {
     m_pBogieV.clear();
     return true;
+}
+
+//***********************************************************
+// getItemInfo() : function template
+//
+// copy item's vector elements to passed vector
+//
+// return number of vector elements 
+//***********************************************************
+template <class I> 
+int Container::getItemInfo(std::vector<I*>& pDstIV,
+                           std::vector<I*>& pSrcIV)
+{
+    if (pSrcIV.size() == 0)
+        return 0;
+
+    // copy values - prevent direct access to Container's vector
+    for (I* item : pSrcIV)
+        pDstIV.push_back(item);
+
+    return pDstIV.size();
+}
+
+//***********************************************************
+// addItem() : function template
+//***********************************************************
+template <class I>
+int Container::addItem(I* pItem, std::vector<I*>& pIV)
+{
+    pIV.push_back(pItem);
+    return pIV.size();
+}
+
+//***********************************************************
+// removeItem() : function template
+//
+// if the item vector is not empty,
+//  1) get the last item in the vector
+//  2) remove one item from vector
+//  3) return pointer to item removed or nullptr
+//***********************************************************
+template <class I>
+I* Container::removeItem(std::vector<I*>& pIV)
+{
+    if (pIV.size() == 0)
+        return nullptr;
+
+    I* pItem = pIV.back();
+    pIV.pop_back();
+
+    return pItem;
+}
+
+//***********************************************************
+// selectItem() : function template
+//
+// if the passed item vector is not empty,
+//      return the item that matches the passed name string
+//***********************************************************
+template <class I>
+I* Container::selectItem(const std::string& iName,
+                         std::vector<I*>& pIV)
+{
+    std::string str;
+
+    for (auto pI : pIV)
+    {
+        // check for matching item name
+        pI->getName(str);
+        if (iName.compare(str))
+            return pI;
+    }
+
+    return nullptr;
 }
 

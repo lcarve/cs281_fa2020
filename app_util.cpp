@@ -33,6 +33,8 @@ int getInventory(Container* pC, std::vector<std::string>& msgQ)
     {
         std::stringstream ss;
 
+        ss << "\n";
+
         // is this Container a Room?
         if (cType == ROOM_CONTAINER)
             ss << "There is an unfriendly here..\n";
