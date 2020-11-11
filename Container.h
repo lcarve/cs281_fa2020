@@ -26,19 +26,6 @@ protected:
     std::vector<Weapon*> m_pWeaponV;      // accumulated Weapons
     std::vector<Bogie*> m_pBogieV;        // accumulated Bogies
 
-    template <class I>
-    int getItemInfo(std::vector<I*>& pDstIV,
-        std::vector<I*>& pSrcIV);
-
-    template <class I>
-    int addItem(I* pItem, std::vector<I*>& pIV);
-
-    template <class I>
-    I* removeItem(std::vector<I*>& pIV);
-
-    template <class I>
-    I* selectItem(const std::string& iName, std::vector<I*>& pIV);
-
 public:
     Container();
     // Container instances will persist for app lifetime
@@ -69,6 +56,19 @@ public:
     int getBogieInfo(std::vector<Bogie*>& pBV);
     bool removeAllBogie();
 
+private:
+    template <class I>
+    int getItemInfo(std::vector<I*>& pDstIV,
+        std::vector<I*>& pSrcIV);
+
+    template <class I>
+    int addItem(I* pItem, std::vector<I*>& pIV);
+
+    template <class I>
+    I* removeItem(std::vector<I*>& pIV);
+
+    template <class I>
+    I* selectItem(const std::string& iName, std::vector<I*>& pIV);
 
 };
 
