@@ -22,38 +22,40 @@
 //------------------------------------------------------------
 
 // number of Room directions plus custom directions
-#define ROOM_NDIR   16
-//#define ROOM_NDIR   6
+int constexpr ROOM_NDIR = 16;
+//int constexpr ROOM_NDIR = 6; // north south east west up down
+
+int constexpr ROOM_POINTS = 150;
 
 // each Room direction
-#define ROOM_NORTH  0
-#define ROOM_SOUTH  1
-#define ROOM_EAST   2
-#define ROOM_WEST   3
-#define ROOM_UP     4
-#define ROOM_DOWN   5
+int constexpr ROOM_NORTH = 0;
+int constexpr ROOM_SOUTH = 1;
+int constexpr ROOM_EAST  = 2;
+int constexpr ROOM_WEST  = 3;
+int constexpr ROOM_UP    = 4;
+int constexpr ROOM_DOWN  = 5;
 // custom directions
-#define ROOM_UX1    6
-#define ROOM_UX2    7
-#define ROOM_UX3    8
-#define ROOM_UX4    9
-#define ROOM_UX5   10
-#define ROOM_UX6   11
-#define ROOM_UX7   12
-#define ROOM_UX8   13
-#define ROOM_UX9   14
-#define ROOM_UXX   15
+int constexpr ROOM_UX1 =  6;
+int constexpr ROOM_UX2 =  7;
+int constexpr ROOM_UX3 =  8;
+int constexpr ROOM_UX4 =  9;
+int constexpr ROOM_UX5 = 10;
+int constexpr ROOM_UX6 = 11;
+int constexpr ROOM_UX7 = 12;
+int constexpr ROOM_UX8 = 13;
+int constexpr ROOM_UX9 = 14;
+int constexpr ROOM_UXX = 15;
 
 //------------------------------------------------------------
 // class definition error codes
 //------------------------------------------------------------
 
 // feature not yet implemented
-#define ROOM_TODO       -1
+int constexpr ROOM_TODO = -1;
 // user's command is not a direction move
-#define ROOM_DEAD_END   -2
+int constexpr ROOM_DEAD_END = -2;
 // something's went wrong in callee function
-#define ROOM_ERROR      -3
+int constexpr ROOM_ERROR = -3;
 
 //------------------------------------------------------------
 // Room class
@@ -73,26 +75,23 @@ private:
 
 public:
     Room();
-    // name is a call by value string parameter
-    // to allow passing string literals
-    // and using initialization list
-    Room(std::string name);
+    Room(const std::string& name, int points);
     // rooms will persist for app lifetime
     // so destructor not needed
     //~Room();
 
-    bool setEntryText(const std::string& str);
-    bool getEntryText(std::string& str) const;
+    void setEntryText(const std::string& str);
+    std::string& getEntryText(std::string& str) const;
     
-    bool setExitText(const std::string& str);
-    bool getExitText(std::string& str) const;
+    void setExitText(const std::string& str);
+    std::string& getExitText(std::string& str) const;
 
     // see direction constants above!
-    bool setDirectionText(int direction, const std::string& str);
-    bool getDirectionText(int direction, std::string& str) const;
+    void setDirectionText(int direction, const std::string& str);
+    std::string& getDirectionText(int direction, std::string& str) const;
 
     // see direction constants above!
-    bool setDirectionPtr(int direction, Room* pRoom);
+    void setDirectionPtr(int direction, Room* pRoom);
     Room* getDirectionPtr(int direction) const;
 };
 

@@ -15,6 +15,8 @@
 #include "Weapon.h"
 #include "Container.h"
 
+constexpr int PLAYER_LIVES = 3;
+
 class Player : public Container
 {
 private:
@@ -23,7 +25,8 @@ private:
 
 public:
     Player();
-    Player(std::string name, int nLives);
+    Player(const std::string& name, int nLives);
+    Player(const std::string& name);
     // players will persist for app lifetime
     // so destructor not needed
     //~Player();
@@ -35,7 +38,7 @@ public:
 
     // Room visit tracking support
     int addRoomVisit(Room* pR);
-    bool clearRoomVisits();
+    void clearRoomVisits();
     int getRoomVisits(std::vector<Room*>& pRV);
 
     int addTreasure(Treasure* pT);

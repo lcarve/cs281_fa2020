@@ -13,6 +13,9 @@
 // base class declaration
 #include "CarryIt.h"
 
+int constexpr WEAPON_POINTS = 100;
+int constexpr WEAPON_USES = 1;
+
 //----------------------------------------------------------
 // Weapon class derived from base class for carried items
 //----------------------------------------------------------
@@ -23,12 +26,12 @@ private:
 
 public:
     Weapon();
-    Weapon(std::string wName);
+    Weapon(const std::string& wName, int points);
     // Weapon persists for app lifetime
     // so destructor not needed
     //~Weapon();
 
-    bool setUsesRemaining(int uses);
+    int setUsesRemaining(int uses);
     int getUsesRemaining() const;
     int addUsesRemaining(int uses);
 };

@@ -23,13 +23,13 @@ int getInventory(Container* pC, std::vector<std::string>& msgQ)
     std::string str;            // message buffers
     char cType = pC->getId();   // ROOM_CONTAINER or PLAYER_CONTAINER
 
-    // vector to be filled with Bogie names and text
-    std::vector<Bogie*> pBogieV;
-    int nBogie = pC->getBogieInfo(pBogieV);
-    total += nBogie;
+    // vector to be filled with Bogey names and text
+    std::vector<Bogey*> pBogeyV;
+    int nBogey = pC->getBogeyInfo(pBogeyV);
+    total += nBogey;
 
-    // display Bogies present
-    if (nBogie > 0)
+    // display Bogeys present
+    if (nBogey > 0)
     {
         std::stringstream ss;
 
@@ -38,13 +38,13 @@ int getInventory(Container* pC, std::vector<std::string>& msgQ)
         // is this Container a Room?
         if (cType == ROOM_CONTAINER)
             ss << "There is an unfriendly here..\n";
-        else if (nBogie > 1)
-            ss << "You've defeated " << nBogie << " unfriendlies!\n";
+        else if (nBogey > 1)
+            ss << "You've defeated " << nBogey << " unfriendlies!\n";
         else
             ss << "You've defeated an unfriendly!\n";
 
-        // display Bogie name and power
-        for (Bogie* pB : pBogieV)
+        // display Bogey name and power
+        for (Bogey* pB : pBogeyV)
         {
             pB->getName(str);
             ss << str << " [" << pB->getPower()

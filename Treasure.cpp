@@ -18,10 +18,11 @@
 // tName is a call by value string parameter
 // to allow passing string literals
 //***********************************************************
-Treasure::Treasure(std::string tName)
+Treasure::Treasure(const std::string& tName, int points)
 {
-    m_id = static_cast<int>(TREASURE_CARRYIT);
+    m_id = TREASURE_CARRYIT;
     m_name = tName;
+    m_points = points;
 }
 
 //***********************************************************
@@ -29,5 +30,6 @@ Treasure::Treasure(std::string tName)
 //
 // constructor
 //***********************************************************
-Treasure::Treasure() : Treasure("untold treasure") { }
+Treasure::Treasure() : Treasure("untold treasure", TREASURE_POINTS)
+{ }
 

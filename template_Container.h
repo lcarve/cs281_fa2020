@@ -13,18 +13,18 @@
 
 #include "Treasure.h"
 #include "Weapon.h"
-#include "Bogey.h"
+#include "Bogie.h"
 
-constexpr int ROOM_CONTAINER    = 'R';
-constexpr int PLAYER_CONTAINER  = 'P';
-constexpr int GENERIC_CONTAINER = 'C';
+#define ROOM_CONTAINER      'R'
+#define PLAYER_CONTAINER    'P'
+#define GENERIC_CONTAINER   'C'
 
 class Container : public Element
 {
 protected:
     std::vector<Treasure*> m_pTreasureV;  // accumulated Treasure
     std::vector<Weapon*> m_pWeaponV;      // accumulated Weapons
-    std::vector<Bogey*> m_pBogeyV;        // accumulated Bogeys
+    std::vector<Bogie*> m_pBogieV;        // accumulated Bogies
 
 public:
     Container();
@@ -38,7 +38,7 @@ public:
     Treasure* selectTreasure(const std::string& tName);
     int getTreasureCount() const;
     int getTreasureInfo(std::vector<Treasure*>& pTV);
-    void removeAllTreasure();
+    bool removeAllTreasure();
 
     // Weapon management
     int addWeapon(Weapon* pT);
@@ -46,15 +46,15 @@ public:
     Weapon* selectWeapon(const std::string& wName);
     int getWeaponCount() const;
     int getWeaponInfo(std::vector<Weapon*>& pWV);
-    void removeAllWeapon();
+    bool removeAllWeapon();
 
-    // Bogey management
-    int addBogey(Bogey* pB);
-    Bogey* removeBogey();
-    Bogey* selectBogey(const std::string& bName);
-    int getBogeyCount() const;
-    int getBogeyInfo(std::vector<Bogey*>& pBV);
-    void removeAllBogey();
+    // Bogie management
+    int addBogie(Bogie* pB);
+    Bogie* removeBogie();
+    Bogie* selectBogie(const std::string& bName);
+    int getBogieCount() const;
+    int getBogieInfo(std::vector<Bogie*>& pBV);
+    bool removeAllBogie();
 
 private:
     template <class I>

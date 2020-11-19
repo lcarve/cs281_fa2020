@@ -22,17 +22,17 @@ bool interAct(Player* pP, Room* pR, std::vector<std::string>& msgQ);
 */
 bool grabTreasure(Player* pP, Room* pR, std::vector<std::string>& msgQ)
 {
-    // Bogie present prevents Player from getting Treasure
-    if (pR->getBogieCount() > 0)
+    // Bogey present prevents Player from getting Treasure
+    if (pR->getBogeyCount() > 0)
     {
         msgQ.push_back("An unfriendly is guarding the treasure!");
 
-        // get current Bogie in Room
-        std::vector<Bogie*> bV;
-        pR->getBogieInfo(bV);
-        Bogie* pB = bV.back();
+        // get current Bogey in Room
+        std::vector<Bogey*> bV;
+        pR->getBogeyInfo(bV);
+        Bogey* pB = bV.back();
 
-        // display Bogie text
+        // display Bogey text
         std::string str;
         pB->getText(str);
         msgQ.push_back("The unfriendly says " + str);
@@ -48,12 +48,11 @@ bool grabTreasure(Player* pP, Room* pR, std::vector<std::string>& msgQ)
     }
 
     pP->addTreasure(pT);
-    std::string str;
-    pT->getName(str);
 
     // build message string with string stream
+    std::string str;
     std::stringstream ss;
-    ss << "You have a " << str << " worth "
+    ss << "You have a " << pT->getName(str) << " worth "
         << pT->getPoints() << " points";
 
     // add completed message string to caller's vector
@@ -84,9 +83,7 @@ bool dropTreasure(Player* pP, Room* pR, std::vector<std::string>& msgQ)
 
     // for queueing display message
     std::string str;
-    pT->getName(str);
-
-    msgQ.push_back("You dropped a " + str);
+    msgQ.push_back("You dropped a " + pT->getName(str));
 
     return true;
 }
@@ -109,12 +106,11 @@ bool grabWeapon(Player* pP, Room* pR, std::vector<std::string>& msgQ)
     }
 
     pP->addWeapon(pW);
-    std::string str;
-    pW->getName(str);
 
     // build message string with string stream
+    std::string str;
     std::stringstream ss;
-    ss << "You have a " << str << " worth "
+    ss << "You have a " << pW->getName(str) << " worth "
         << pW->getPoints() << " points";
 
     // copy completed message string to caller's vector
@@ -145,9 +141,7 @@ bool dropWeapon(Player* pP, Room* pR, std::vector<std::string>& msgQ)
 
     // for queueing display message
     std::string str;
-    pW->getName(str);
-
-    msgQ.push_back("You dropped a " + str);
+    msgQ.push_back("You dropped a " + pW->getName(str));
 
     return true;
 }
@@ -155,7 +149,7 @@ bool dropWeapon(Player* pP, Room* pR, std::vector<std::string>& msgQ)
 /******************************************************************************
 * defendSelf()
 *
-* use a Weapon on a Bogie
+* use a Weapon on a Bogey
 * add messages to caller's vector for display
 * 
 * returns 'q' when Player is defeated and all lives are gone, or 'f'
@@ -168,8 +162,7 @@ char defendSelf(Player* pP, Room* pR, std::vector<std::string>& msgQ)
     {
         // get Player name
         std::string str;
-        pP->getName(str);
-        msgQ.push_back("Aaahhhhh!! " + str + ", you are defeated!");
+        msgQ.push_back("Aaahhhhh!! " + pP->getName(str) + ", you are defeated!");
 
         // check for all Player lives used up
         int nLivesLeft = pP->loseLife();
@@ -186,20 +179,21 @@ char defendSelf(Player* pP, Room* pR, std::vector<std::string>& msgQ)
         msgQ.push_back(ss.str());
     }
 
+    // #TODO return same command to main loop
     return 'f';
 }
 
 /******************************************************************************
-* defendSelf()
+* interAct()
 *
-* use a Weapon on a Bogie
+* use a Weapon on a Bogey
 * add messages to caller's vector for display
 *******************************************************************************
 */
 bool interAct(Player * pP, Room * pR, std::vector<std::string> & msgQ)
 {
-    // check for Bogies present
-    if (pR->getBogieCount() == 0)
+    // check for Bogeys present
+    if (pR->getBogeyCount() == 0)
     {
         msgQ.push_back("No unfriendlies here..");
         return true;
@@ -218,31 +212,25 @@ bool interAct(Player * pP, Room * pR, std::vector<std::string> & msgQ)
     Weapon* pW = wV.back();
     int wPower = pW->getPower();
 
-    // get last Bogie stored in vector
-    std::vector<Bogie*> bV;
-    pR->getBogieInfo(bV);
-    Bogie* pB = bV.back();
+    // get last Bogey stored in vector
+    std::vector<Bogey*> bV;
+    pR->getBogeyInfo(bV);
+    Bogey* pB = bV.back();
     int bPower = pB->getPower();
 
-    // get Weapon and Bogie names
-    std::string wName;
-    pW->getName(wName);
-    std::string bName;
-    pB->getName(bName);
-
-    msgQ.push_back("You flail at the " + bName +
-                   " with your " + wName + "!");
+    // get Weapon and Bogey names
+    std::string wName, bName;
+    msgQ.push_back("You flail at the " + pB->getName(bName) +
+                   " with your " + pW->getName(wName) + "!");
 
     // get text associated with this Weapon
     std::string str;
-    pW->getText(str);
-    msgQ.push_back(str);
+    msgQ.push_back(pW->getText(str));
 
-    // get text associated with this Bogie
-    pB->getText(str);
-    msgQ.push_back(str);
+    // get text associated with this Bogey
+    msgQ.push_back(pB->getText(str));
 
-    // if Weapon more powerful than Bogie award points
+    // if Weapon more powerful than Bogey award points
     if (wPower >= bPower)
     {
         int bPoints = pB->getPoints();
@@ -251,15 +239,15 @@ bool interAct(Player * pP, Room * pR, std::vector<std::string> & msgQ)
         ss << bPoints << " points for defeating the " << bName << "!";
         msgQ.push_back(ss.str());
 
-        // award points and add Bogie notch to Player's belt
+        // award points and add Bogey notch to Player's belt
         pP->addPoints(bPoints);
-        pR->removeBogie();
-        pP->addBogie(pB);
+        pR->removeBogey();
+        pP->addBogey(pB);
 
         return true;
     }
 
-    // Weapon weaker than Bogie lives to fight again
+    // Weapon weaker than Bogey lives to fight again
     if (wPower > 0)
     {
         msgQ.push_back("\nYou missed the " + bName + "!");
@@ -281,17 +269,13 @@ bool lookAllDirections(Room* pR, std::vector<std::string>& msgQ)
 {
     // utility buffer gets stomped every time through loop
     std::string str;
-
-    pR->getName(str);
-    msgQ.push_back("You're in " + str + "\n");
+    msgQ.push_back("You're in " + pR->getName(str) + "\n");
 
     // add text for all directions to caller's vector
     for (int i = 0; i < ROOM_NDIR; i++)
     {
-        pR->getDirectionText(i, str);
-
         // only display text for diretions we're using 
-        if (str != "")
+        if (pR->getDirectionText(i, str) != "")
             msgQ.push_back(str);
     }
 
@@ -321,8 +305,7 @@ Room* movePlayer(Player* pP, Room* pR, int direction, std::vector<std::string>& 
     if (pNextRoom != nullptr)
     {
         // "You are leaving" current Room
-        pR->getExitText(str);
-        msgQ.push_back(str);
+        msgQ.push_back(pR->getExitText(str));
 
         // update Player's Room visits
         visitRoom(pP, pNextRoom, msgQ);
@@ -358,12 +341,8 @@ bool visitRoom(Player* pP, Room* pR, std::vector<std::string>& msgQ)
 
     // build greeting messages and queue for display
     std::string str, roomName;
-    
-    pR->getName(roomName);
-    msgQ.push_back("You're in " + roomName + ".");
-
-    pR->getEntryText(str);
-    msgQ.push_back(str);
+    msgQ.push_back("You're in " + pR->getName(roomName) + ".");
+    msgQ.push_back(pR->getEntryText(str));
 
     // only award points for initial visit to each Room
     if (pR->getPoints() > 0)
@@ -375,5 +354,18 @@ bool visitRoom(Player* pP, Room* pR, std::vector<std::string>& msgQ)
         pR->setPoints(0);
     }
 
+    return true;
+}
+
+/******************************************************************************
+* doMagicWord()
+*
+* Player uses magic word
+* queue messages for display
+*******************************************************************************
+*/
+bool doMagicWord(Player* pP, Room* pR, std::vector<std::string>& msgQ)
+{
+    
     return true;
 }

@@ -11,8 +11,8 @@
 #include "CarryIt.h"
 
 // default carryable element characteristics
-#define MAX_POWER    5
-#define MIN_POWER    3
+constexpr int MAX_POWER = 5;
+constexpr int MIN_POWER = 3;
 
 //***********************************************************
 // CarryIt()
@@ -21,7 +21,7 @@
 //***********************************************************
 CarryIt::CarryIt()
 {
-    m_id = static_cast<int>(GENERIC_CARRYIT);
+    m_id = GENERIC_CARRYIT;
     m_name = "carry me";
 
     m_power = rand() % MAX_POWER + MIN_POWER;
@@ -32,10 +32,9 @@ CarryIt::CarryIt()
 //***********************************************************
 // setPower()
 //***********************************************************
-bool CarryIt::setPower(int power)
+void CarryIt::setPower(int power)
 {
     m_power = power;
-    return true;
 }
 
 //***********************************************************
@@ -53,6 +52,5 @@ int CarryIt::getPower() const
 //***********************************************************
 int CarryIt::addPower(int morePower)
 {
-    m_power += morePower;
-    return m_power;
+    return m_power += morePower;
 }

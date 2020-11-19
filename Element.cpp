@@ -2,7 +2,7 @@
 * Element.cpp
 * CS 281-0798, Fall 2020
 *
-* Element pure abstract class definition
+* Element class definition
 *******************************************************************************
 */
 #include <string>
@@ -11,8 +11,13 @@
 
 
 //***********************************************************
-// Element() not used for pure abstract class
+// Element()
 //***********************************************************
+Element::Element() 
+{ 
+    m_points = 0; 
+    m_id = GENERIC_ELEMENT; 
+}
 
 //***********************************************************
 // setId() not used because constructor sets m_id
@@ -21,45 +26,36 @@
 //***********************************************************
 // getId() 
 //***********************************************************
-int Element::getId() const
-{
-    return m_id;
-}
+int Element::getId() const { return m_id; }
 
 //***********************************************************
 // setName()
 //***********************************************************
-bool Element::setName(const std::string& name)
-{
+void Element::setName(const std::string& name)
+{ 
     m_name = name;
-    return true;
 }
 
 //***********************************************************
 // getName()
 //***********************************************************
-bool Element::getName(std::string& name) const
+std::string& Element::getName(std::string& name) const
 {
-    name = m_name;
-    return true;
+    return name = m_name;
 }
 
 //***********************************************************
 // setPoints()
 //***********************************************************
-bool Element::setPoints(int points)
+void Element::setPoints(int points)
 {
     m_points = points;
-    return true;
 }
 
 //***********************************************************
 // getPoints()
 //***********************************************************
-int Element::getPoints() const
-{
-    return m_points;
-}
+int Element::getPoints() const { return m_points; }
 
 //***********************************************************
 // addPoints()
@@ -68,24 +64,21 @@ int Element::getPoints() const
 //***********************************************************
 int Element::addPoints(int points)
 {
-    m_points += points;
-    return true;
+    return m_points += points;
 }
 
 //***********************************************************
 // setText()
 //***********************************************************
-bool Element::setText(const std::string& text)
+void Element::setText(const std::string& text)
 {
     m_text = text;
-    return true;
 }
 
 //***********************************************************
 // getText()
 //***********************************************************
-bool Element::getText(std::string& text) const
+std::string& Element::getText(std::string& text) const
 {
-    text = m_text;
-    return true;
+    return text = m_text;
 }

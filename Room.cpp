@@ -20,12 +20,13 @@
 // name is a call by value parameter
 // to allow passing string literals
 //***********************************************************
-Room::Room(std::string name)
+Room::Room(const std::string& name, int points)
 {
-    m_id = static_cast<int>(ROOM_CONTAINER);
+    m_id = ROOM_CONTAINER;
     m_name = name;
-    m_entryText = "entering the " + m_name;
-    m_exitText = "exiting the " + m_name;
+    m_points = points;
+    m_entryText = "entering " + m_name;
+    m_exitText = "exiting " + m_name;
 
     // initialize Room text to known values
     m_roomTextArray[ROOM_NORTH] = "looking north";
@@ -77,60 +78,54 @@ Room::Room(std::string name)
 //
 // constructor
 //***********************************************************
-Room::Room() : Room("room") {}
+Room::Room() : Room("room", ROOM_POINTS)  { }
 
 //***********************************************************
 // setEntryText()
 //***********************************************************
-bool Room::setEntryText(const std::string& entryText)
+void Room::setEntryText(const std::string& entryText)
 {
     m_entryText = entryText;
-    return true;
 }
 
 //***********************************************************
 // getEntryText()
 //***********************************************************
-bool Room::getEntryText(std::string& str) const
+std::string& Room::getEntryText(std::string& str) const
 {
-    str = m_entryText;
-    return true;
+    return str = m_entryText;
 }
 
 //***********************************************************
 // setExitText()
 //***********************************************************
-bool Room::setExitText(const std::string& exitText)
+void Room::setExitText(const std::string& exitText)
 {
     m_exitText = exitText;
-    return true;
 }
 
 //***********************************************************
 // getExitText()
 //***********************************************************
-bool Room::getExitText(std::string& str) const
+std::string& Room::getExitText(std::string& str) const
 {
-    str = m_exitText;
-    return true;
+    return str = m_exitText;
 }
 
 //***********************************************************
 // setDirectionText()
 //***********************************************************
-bool Room::setDirectionText(int direction, const std::string& str)
+void Room::setDirectionText(int direction, const std::string& str)
 {
     m_roomTextArray[direction] = str;
-    return true;
 }
 
 //***********************************************************
 // getRoomDirectionText()
 //***********************************************************
- bool Room::getDirectionText(int direction, std::string& str) const
+std::string& Room::getDirectionText(int direction, std::string& str) const
 {
-     str = m_roomTextArray[direction];
-     return true;
+     return str = m_roomTextArray[direction];
  }
 
 //***********************************************************
@@ -138,10 +133,9 @@ bool Room::setDirectionText(int direction, const std::string& str)
 //
 // set the pointer to the next Room in this direction
 //***********************************************************
-bool Room::setDirectionPtr(int direction, Room* pRoom)
+void Room::setDirectionPtr(int direction, Room* pRoom)
 {
     m_nextRoomPtrArray[direction] = pRoom;
-    return true;
 }
 
 //***********************************************************

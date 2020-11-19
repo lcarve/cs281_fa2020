@@ -15,13 +15,25 @@
 //***********************************************************
 // Player(string name)
 //
-// overload constructor
+// overload constructor 1 of 2
 //***********************************************************
-Player::Player(std::string name, int nLives)
+Player::Player(const std::string& name, int nLives)
 {
-    m_id = static_cast<int>(PLAYER_CONTAINER);
+    m_id = PLAYER_CONTAINER;
     m_name = name;
     m_nLives = nLives;
+}
+
+//***********************************************************
+// Player(string name)
+//
+// overload constructor 2 of 2
+//***********************************************************
+Player::Player(const std::string& name)
+{
+    m_id = PLAYER_CONTAINER;
+    m_name = name;
+    m_nLives = PLAYER_LIVES;
 }
 
 //***********************************************************
@@ -29,7 +41,7 @@ Player::Player(std::string name, int nLives)
 //
 // constructor
 //***********************************************************
-Player::Player() : Player("player 1", 1) { }
+Player::Player() : Player("player 1", PLAYER_LIVES) { }
 
 //***********************************************************
 // getLives()
@@ -39,17 +51,17 @@ int Player::getLives() const { return m_nLives; }
 //***********************************************************
 // setLives()
 //***********************************************************
-int Player::setLives(int n) { m_nLives = n; return n; }
+int Player::setLives(int n) { return m_nLives = n; }
 
 //***********************************************************
 // addLives()
 //***********************************************************
-int Player::addLives(int n) { m_nLives += n; return m_nLives; }
+int Player::addLives(int n) { return m_nLives += n; }
 
 //***********************************************************
 // loseLife()
 //***********************************************************
-int Player::loseLife() { m_nLives--;  return m_nLives; }
+int Player::loseLife() { return m_nLives--; }
 
 //***********************************************************
 // addRoomVisit()
@@ -67,10 +79,9 @@ int Player::addRoomVisit(Room* pR)
 //
 // clears Player's Room visit history
 //***********************************************************
-bool Player::clearRoomVisits()
+void Player::clearRoomVisits()
 {
     m_pRoomsVisitedV.clear();
-    return true;
 }
 
 //***********************************************************

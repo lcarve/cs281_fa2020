@@ -18,11 +18,8 @@
 */
 Room* initNexus()
 {
-    Room* pRoom = new Room();
-
-    // set Room name and point value
-    pRoom->setPoints(100);
-    pRoom->setName("the Nexus");
+    // create Room and set name and point value
+    Room* pRoom = new Room("the Nexus", 100);
 
     // set Room text for entry, exit, and every direction
     pRoom->setEntryText("The Nexus is a portal to other dimensions.");
@@ -35,30 +32,24 @@ Room* initNexus()
     pRoom->setDirectionText(ROOM_DOWN, "A carpet of wildflowers below");
 
     // create and initialize Treasure instance
-    Treasure* pTreasure = new Treasure();
-    pTreasure->setName("heart of gold");
-    pTreasure->setPoints(100);
+    Treasure* pTreasure = new Treasure("heart of gold", 100);
 
     // install Treasure pointer in Room's Treasure vector
     pRoom->addTreasure(pTreasure);
 
     // create and initialize Weapon instance
-    Weapon* pWeapon = new Weapon();
-    pWeapon->setName("boring PowerPoint");
+    Weapon* pWeapon = new Weapon("boring PowerPoint", 100);
     pWeapon->setText("Clunk!");
-    pWeapon->setPoints(100);
 
     // install Weapon pointer in Room's Weapon vector
     pRoom->addWeapon(pWeapon);
 
-    // create and initialize Bogie instance
-    Bogie* pBogie = new Bogie();
-    pBogie->setName("swarthy, sweaty, bandy-legged orc");
-    pBogie->setText("Heeeyyaahhh!!");
-    pBogie->setPoints(200);
+    // create and initialize Bogey instance
+    Bogey* pBogey = new Bogey("swarthy, sweaty orc", 200);
+    pBogey->setText("Heeeyyaahhh!!");
 
-    // install Bogie pointer in Room's Bogie vector
-    pRoom->addBogie(pBogie);
+    // install Bogey pointer in Room's Bogey vector
+    pRoom->addBogey(pBogey);
 
     return pRoom;
 }
@@ -69,11 +60,8 @@ Room* initNexus()
 */
 Room* initBayOfLune()
 {
-    Room* pRoom = new Room();
-
-    // set Room name and point value
-    pRoom->setName("the Bay of Lune");
-    pRoom->setPoints(150);
+    // create Room and set name and point value
+    Room* pRoom = new Room("the Bay of Lune", 150);
 
     // set Room text for entry, exit, and every direction
     pRoom->setEntryText("You are swimming in the clear, cold Bay of Lune.");
@@ -86,18 +74,14 @@ Room* initBayOfLune()
     pRoom->setDirectionText(ROOM_DOWN, "Coarse sand beneath clear water below");
 
     // create and initialize Treasure instance
-    Treasure* pTreasure = new Treasure();
-    pTreasure->setName("chunk of glowing pink quartz");
-    pTreasure->setPoints(100);
+    Treasure* pTreasure = new Treasure("chunk of glowing pink quartz", 100);
 
     // install Treasure pointer in Room's Treasure vector
     pRoom->addTreasure(pTreasure);
 
     // create and initialize Weapon instance
-    Weapon* pWeapon = new Weapon();
-    pWeapon->setName("fly swatter");
+    Weapon* pWeapon = new Weapon("pink plastic fly swatter", 100);
     pWeapon->setText("WhhhhffffffTTT!!");
-    pWeapon->setPoints(100);
 
     // install Weapon pointer in Room's Weapon vector
     pRoom->addWeapon(pWeapon);
@@ -111,11 +95,8 @@ Room* initBayOfLune()
 */
 Room* initLakeHoudini()
 {
-    Room* pRoom = new Room();
-
-    // set Room name and point value
-    pRoom->setPoints(150);
-    pRoom->setName("Lake Houdini");
+    // create Room and set name and point value
+    Room* pRoom = new Room("Lake Houdini", 150);
 
     // set Room text for entry, exit, and every direction
     pRoom->setEntryText("Lake Houdini's cool tourmaline water laps your bare toes.");
@@ -128,18 +109,14 @@ Room* initLakeHoudini()
     pRoom->setDirectionText(ROOM_DOWN, "Little fishes and pollywogs in clear water below");
 
     // create and initialize Treasure instance
-    Treasure* pTreasure = new Treasure();
-    pTreasure->setName("diamond in the rough");
-    pTreasure->setPoints(100);
+    Treasure* pTreasure = new Treasure("diamond in the rough", 100);
 
     // install Treasure pointer in Room's Treasure vector
     pRoom->addTreasure(pTreasure);
 
     // create and initialize Weapon instance
-    Weapon* pWeapon = new Weapon();
-    pWeapon->setName("Nerf gun");
+    Weapon* pWeapon = new Weapon("Nerf gun", 100);
     pWeapon->setText("FFFOOOMMMM!!");
-    pWeapon->setPoints(100);
 
     // install Treasure pointer in Room's Treasure vector
     pRoom->addWeapon(pWeapon);
@@ -153,11 +130,8 @@ Room* initLakeHoudini()
 */
 Room* initSiliconDesert()
 {
-    Room* pRoom = new Room();
-
-    // set Room name and point value
-    pRoom->setPoints(150);
-    pRoom->setName("the shimmering Silicon Desert");
+    // create Room and set name and point value
+    Room* pRoom = new Room("the shimmering Silicon Desert", 150);
 
     // set Room text for entry, exit, and every direction
     pRoom->setEntryText("Old circuit boards crowd the desert landscape.");
@@ -178,11 +152,8 @@ Room* initSiliconDesert()
 */
 Room* initMagicMountains()
 {
-    Room* pRoom = new Room();
-
-    // set Room name and point value
-    pRoom->setPoints(150);
-    pRoom->setName("a high pass in the Magic Mountains");
+    // create Room and set name and point value
+    Room* pRoom = new Room("a high pass in the Magic Mountains", 150);
 
     // set Room text for entry, exit, and every direction
     pRoom->setEntryText("the view is fantastic!");
@@ -194,14 +165,12 @@ Room* initMagicMountains()
     pRoom->setDirectionText(ROOM_UP, "Cloudy skies above");
     pRoom->setDirectionText(ROOM_DOWN, "You're up high, don't look down!");
 
-    // create and initialize Bogie instance
-    Bogie* pBogie = new Bogie();
-    pBogie->setName("big ugly fly");
-    pBogie->setText("Shplatt!!");
-    pBogie->setPoints(100);
+    // create and initialize Bogey instance
+    Bogey* pBogey = new Bogey("big ugly fly", 100);
+    pBogey->setText("Shplatt!!");
 
-    // install Bogie pointer in Room's Bogie vector
-    pRoom->addBogie(pBogie);
+    // install Bogey pointer in Room's Bogey vector
+    pRoom->addBogey(pBogey);
 
     return pRoom;
 }

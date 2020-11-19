@@ -17,10 +17,11 @@
 // wName is a call by value string parameter
 // to allow passing string literals
 //***********************************************************
-Weapon::Weapon(std::string wName)
+Weapon::Weapon(const std::string& wName, int points)
 {
-    m_id = static_cast<int>(WEAPON_CARRYIT);
+    m_id = WEAPON_CARRYIT;
     m_name = wName;
+    m_points = points;
 }
 
 //***********************************************************
@@ -28,6 +29,29 @@ Weapon::Weapon(std::string wName)
 //
 // constructor
 //***********************************************************
-Weapon::Weapon() : Weapon("weapon of protection")
+Weapon::Weapon() : Weapon("weapon of protection", WEAPON_POINTS)
 { }
 
+//***********************************************************
+// setUsesRemaining()
+//***********************************************************
+int Weapon::setUsesRemaining(int uses)
+{
+    return m_usesRemaining = uses;
+}
+
+//***********************************************************
+// getUsesRemaining()
+//***********************************************************
+int Weapon::getUsesRemaining() const
+{
+    return m_usesRemaining;
+}
+
+//***********************************************************
+// addUsesRemaining()
+//***********************************************************
+int Weapon::addUsesRemaining(int uses)
+{
+    return m_usesRemaining += uses;
+}

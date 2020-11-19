@@ -17,7 +17,7 @@
 //***********************************************************
 Container::Container()
 {
-    m_id = GENERIC_CONTAINER;
+    m_id = static_cast<int>(GENERIC_CONTAINER);
     m_name = "container";
 }
 
@@ -84,9 +84,10 @@ int Container::getTreasureInfo(std::vector<Treasure*>& tV)
 //***********************************************************
 // removeAllTreasure()
 //***********************************************************
-void Container::removeAllTreasure()
+bool Container::removeAllTreasure()
 {
     m_pTreasureV.clear();
+    return true;
 }
 
 //***********************************************************
@@ -152,77 +153,79 @@ int Container::getWeaponInfo(std::vector<Weapon*>& wV)
 //***********************************************************
 // removeAllWeapon()
 //***********************************************************
-void Container::removeAllWeapon()
+bool Container::removeAllWeapon()
 {
     m_pWeaponV.clear();
+    return true;
 }
 
 //***********************************************************
-// addBogey()
+// addBogie()
 //
-// adds a Bogey instance pointer to the container's
-// vector of Bogey instance pointers
+// adds a Bogie instance pointer to the container's
+// vector of Bogie instance pointers
 //
 // returns the number of Weapons in the vector
 //***********************************************************
-int Container::addBogey(Bogey* pB)
+int Container::addBogie(Bogie* pB)
 {
-    m_pBogeyV.push_back(pB);
-    return m_pBogeyV.size();
+    m_pBogieV.push_back(pB);
+    return m_pBogieV.size();
 }
 
 //***********************************************************
-// removeBogey()
+// removeBogie()
 //
-// if the Bogey vector is not empty,
-//  1) get the last Bogey in the vector
-//  2) remove one Bogey from vector
-//  3) return pointer to Bogey removed or nullptr
+// if the Bogie vector is not empty,
+//  1) get the last Bogie in the vector
+//  2) remove one Bogie from vector
+//  3) return pointer to Bogie removed or nullptr
 //***********************************************************
-Bogey* Container::removeBogey()
+Bogie* Container::removeBogie()
 {
-    return removeItem(m_pBogeyV);
+    return removeItem(m_pBogieV);
 }
 
 //***********************************************************
-// selectBogey()
+// selectBogie()
 //
-// if the Bogey vector is not empty,
-//      get the Bogey that matches the passed name string
+// if the Bogie vector is not empty,
+//      get the Bogie that matches the passed name string
 //***********************************************************
-Bogey* Container::selectBogey(const std::string& bName)
+Bogie* Container::selectBogie(const std::string& bName)
 {
-    return selectItem(bName, m_pBogeyV);
+    return selectItem(bName, m_pBogieV);
 }
 
 //***********************************************************
-// getBogeyCount()
+// getBogieCount()
 //
-// return number of Bogeys in this Container
+// return number of Bogies in this Container
 //***********************************************************
-int Container::getBogeyCount() const
+int Container::getBogieCount() const
 {
-    return m_pBogeyV.size();
+    return m_pBogieV.size();
 }
 
 //***********************************************************
-// getBogeyInfo()
+// getBogieInfo()
 //
-// copy Bogey vector elements to passed vector
+// copy Bogie vector elements to passed vector
 //
-// return number of Bogey elements 
+// return number of Bogie elements 
 //***********************************************************
-int Container::getBogeyInfo(std::vector<Bogey*>& bV)
+int Container::getBogieInfo(std::vector<Bogie*>& bV)
 {
-    return getItemInfo(bV, m_pBogeyV);
+    return getItemInfo(bV, m_pBogieV);
 }
 
 //***********************************************************
-// removeAllBogey()
+// removeAllBogie()
 //***********************************************************
-void Container::removeAllBogey()
+bool Container::removeAllBogie()
 {
-    m_pBogeyV.clear();
+    m_pBogieV.clear();
+    return true;
 }
 
 //***********************************************************

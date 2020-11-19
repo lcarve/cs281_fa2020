@@ -2,11 +2,13 @@
 * Element.h
 * CS 281-0798, Fall 2020
 *
-* Element pure abstract class declaration
+* Element class declaration
 *******************************************************************************
 */
 #ifndef ELEMENT_H
 #define ELEMENT_H
+
+int constexpr GENERIC_ELEMENT = 'e';
 
 //----------------------------------------------------------
 // Element class:
@@ -21,17 +23,19 @@ protected:
     int m_points;          // accumulated points
 
 public:
+    Element();
+
     int getId() const;
     
-    bool setName(const std::string& name);
-    bool getName(std::string& name) const;
+    void setName(const std::string& name);
+    std::string& getName(std::string& name) const;
     
     int addPoints(int points);
-    bool setPoints(int points);
+    void setPoints(int points);
     int getPoints() const;
 
-    bool setText(const std::string& text);
-    bool getText(std::string& text) const;
+    void setText(const std::string& text);
+    std::string& getText(std::string& text) const;
 };
 
 #endif

@@ -44,7 +44,7 @@ int main()
     // accumulate messages for display each game loop iteration
     std::vector<std::string> messageQueue;
 
-    // init game rooms with text, Treasure, Weapons, Bogies
+    // init game rooms with text, Treasure, Weapons, Bogeys
     g_pNexus = initNexus();
     g_pBayOfLune = initBayOfLune();
     g_pLakeHoudini = initLakeHoudini();
@@ -88,7 +88,7 @@ int main()
     displayMessageQueue(messageQueue);
 
     // one-character command from user cin >> userCmd
-    char userCmd;
+    char userCmd = 'x';
     int direction = ROOM_DEAD_END;
 
     // temp Room pointer for Player "movement"
@@ -100,7 +100,7 @@ int main()
         userCmd = menuOption();
 
         // handle move commands first
-                // translate char command to int direction constant
+        // translate char command to int direction constant
         direction = mapMoveCommand(userCmd);
         if (direction != ROOM_DEAD_END)
                 pRoom = movePlayer(pPlayer, pRoom, direction, messageQueue);
@@ -125,7 +125,9 @@ int main()
         // I)nfo command
         else if (userCmd == 'i')
             getAllInfo(pPlayer, pRoom, messageQueue);
-// Q)uit command 
+        else if (userCmd == 'm')
+            doMagicWord(pPlayer, pRoom, messageQueue);
+        // Q)uit command 
         else if (userCmd == 'q')
             messageQueue.push_back("Leaving so soon?");
 // handle bad input

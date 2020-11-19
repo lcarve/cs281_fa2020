@@ -10,10 +10,10 @@
 
 #include "Element.h"
 
-#define TREASURE_CARRYIT    't'
-#define WEAPON_CARRYIT      'w'
-#define BOGIE_CARRYIT       'b'
-#define GENERIC_CARRYIT     'c'
+int constexpr TREASURE_CARRYIT = 't';
+int constexpr WEAPON_CARRYIT   = 'w';
+int constexpr BOGEY_CARRYIT    = 'b';
+int constexpr GENERIC_CARRYIT  = 'c';
 
 //----------------------------------------------------------
 // CarryIt class: abstract base class for carried items
@@ -31,7 +31,7 @@ public:
     // so destructor not needed
     //~CarryIt();
 
-    bool setPower(int power);
+    void setPower(int power);
     int getPower() const;
     int addPower(int morePower);
 };

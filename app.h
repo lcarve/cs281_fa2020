@@ -9,15 +9,14 @@
 #define APP_H
 
 // constants
-#define PLAYER_DEFEATED -1
-#define PLAYER_LIVES     3
+constexpr int PLAYER_DEFEATED = -1;
 
 // classes used
 #include "Room.h"
 #include "Player.h"
 #include "Treasure.h"
 #include "Weapon.h"
-#include "Bogie.h"
+#include "Bogey.h"
 
 // app.cpp: global variables
 extern Room* g_pNexus;
@@ -45,6 +44,7 @@ char defendSelf(Player* pP, Room* pR, std::vector<std::string>& msgQ);
 bool lookAllDirections(Room* pR, std::vector<std::string>& msgQ);
 Room* movePlayer(Player* pP, Room* pR, int direction, std::vector<std::string>& msgQ);
 bool visitRoom(Player* pP, Room* pR, std::vector<std::string>& msgQ);
+bool doMagicWord(Player* pP, Room* pR, std::vector<std::string>& msgQ);
 
 
 // app_util.cpp: Room initialization and management functions
