@@ -161,7 +161,7 @@ Room* initMagicMountains()
     pRoom->setDirectionText(ROOM_NORTH, "Hundreds of acres of pine forest extending to the North horizon");
     pRoom->setDirectionText(ROOM_SOUTH, "Dark rain clouds are rolling in from the South");
     pRoom->setDirectionText(ROOM_EAST, "The Nexus to the East");
-    pRoom->setDirectionText(ROOM_WEST, "The Nexus to the East");
+    pRoom->setDirectionText(ROOM_WEST, "Sunset to the West");
     pRoom->setDirectionText(ROOM_UP, "Cloudy skies above");
     pRoom->setDirectionText(ROOM_DOWN, "You're up high, don't look down!");
 
