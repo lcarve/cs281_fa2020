@@ -9,6 +9,10 @@
 
 #include "Bogey.h"
 
+// initialize static class instance count
+int Bogey::m_bCount = 0;
+
+
 //***********************************************************
 // Bogey()
 //

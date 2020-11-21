@@ -12,6 +12,10 @@
 #include "Player.h"
 #include "Treasure.h"
 
+// initialize static class instance count
+int Player::m_pCount = 0;
+
+
 //***********************************************************
 // Player(string name)
 //

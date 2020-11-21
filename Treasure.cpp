@@ -10,6 +10,10 @@
 #include "CarryIt.h"
 #include "Treasure.h"
 
+// initialize static class instance count
+int Treasure::m_tCount = 0;
+
+
 //***********************************************************
 // Treasure(string tName)
 //

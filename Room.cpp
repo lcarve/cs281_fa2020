@@ -12,6 +12,10 @@
 #include "Treasure.h"
 #include "Weapon.h"
 
+// initialize static class instance count
+int Room::m_rCount = 0;
+
+
 //***********************************************************
 // Room(string name)
 //

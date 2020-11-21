@@ -2,7 +2,7 @@
 * app.cpp
 * CS 281 - 0798, Fall 2020
 *
-* App main with entry point main()
+* App main with entry point
 *******************************************************************************
 */
 #include <iostream>
@@ -27,22 +27,13 @@ Room* g_pLakeHoudini    = nullptr;
 Room* g_pSiliconDesert  = nullptr;
 Room* g_pMagicMountains = nullptr;
 
-//initialize static class instance counts
-int Player::m_pCount = 0;
-int Room::m_rCount = 0;
-int Treasure::m_tCount = 0;
-int Weapon::m_wCount = 0;
-int Bogey::m_bCount = 0;
-
 
 /******************************************************************************
-* int main()
-* entry point
+* int main() : entry point
 *******************************************************************************
 */
 int main()
 {
-
     // seed random number generator for CarryIt power values
     time_t t;
     srand(static_cast<unsigned int>(time(&t)));

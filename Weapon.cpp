@@ -9,6 +9,10 @@
 
 #include "Weapon.h"
 
+// initialize static class instance count
+int Weapon::m_wCount = 0;
+
+
 //***********************************************************
 // Weapon(string wName)
 //
