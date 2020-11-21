@@ -19,6 +19,9 @@
 //***********************************************************
 Weapon::Weapon(const std::string& wName, int points)
 {
+    // track instance count
+    m_wCount++;
+
     m_id = WEAPON_CARRYIT;
     m_name = wName;
     m_points = points;
@@ -31,6 +34,12 @@ Weapon::Weapon(const std::string& wName, int points)
 //***********************************************************
 Weapon::Weapon() : Weapon("weapon of protection", WEAPON_POINTS)
 { }
+
+//***********************************************************
+// getWeaponCount() : return static instance count 
+//***********************************************************
+int Weapon::getWeaponCount() const { return m_wCount; }
+
 
 //***********************************************************
 // setUsesRemaining()

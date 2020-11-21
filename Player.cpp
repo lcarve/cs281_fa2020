@@ -19,22 +19,23 @@
 //***********************************************************
 Player::Player(const std::string& name, int nLives)
 {
+    // track instance count
+    m_pCount++;
+
     m_id = PLAYER_CONTAINER;
     m_name = name;
     m_nLives = nLives;
 }
+
 
 //***********************************************************
 // Player(string name)
 //
 // overload constructor 2 of 2
 //***********************************************************
-Player::Player(const std::string& name)
-{
-    m_id = PLAYER_CONTAINER;
-    m_name = name;
-    m_nLives = PLAYER_LIVES;
-}
+Player::Player(const std::string& name) : Player(name, PLAYER_LIVES)
+{  }
+
 
 //***********************************************************
 // Player()
@@ -43,25 +44,36 @@ Player::Player(const std::string& name)
 //***********************************************************
 Player::Player() : Player("player 1", PLAYER_LIVES) { }
 
+
+//***********************************************************
+// getPlayerCount() : return static instance count 
+//***********************************************************
+int Player::getPlayerCount() const { return m_pCount; }
+
+
 //***********************************************************
 // getLives()
 //***********************************************************
 int Player::getLives() const { return m_nLives; }
+
 
 //***********************************************************
 // setLives()
 //***********************************************************
 int Player::setLives(int n) { return m_nLives = n; }
 
+
 //***********************************************************
 // addLives()
 //***********************************************************
 int Player::addLives(int n) { return m_nLives += n; }
 
+
 //***********************************************************
 // loseLife()
 //***********************************************************
 int Player::loseLife() { return m_nLives--; }
+
 
 //***********************************************************
 // addRoomVisit()
@@ -74,6 +86,7 @@ int Player::addRoomVisit(Room* pR)
     return m_pRoomsVisitedV.size();
 }
 
+
 //***********************************************************
 // clearRoomVisits()
 //
@@ -83,6 +96,7 @@ void Player::clearRoomVisits()
 {
     m_pRoomsVisitedV.clear();
 }
+
 
 //***********************************************************
 // getRoomVisits()
@@ -98,6 +112,7 @@ int Player::getRoomVisits(std::vector<Room*>& pRV)
     }
     return m_pRoomsVisitedV.size(); 
 }
+
 
 //***********************************************************
 // addTreasure()
@@ -116,6 +131,7 @@ int Player::addTreasure(Treasure* pT)
 
     return n;
 }
+
 
 //***********************************************************
 // removeTreasure()
@@ -137,6 +153,7 @@ Treasure* Player::removeTreasure()
     return pT;
 }
 
+
 //***********************************************************
 // addWeapon()
 //
@@ -154,6 +171,7 @@ int Player::addWeapon(Weapon* pW)
 
     return n;
 }
+
 
 //***********************************************************
 // removeWeapon()
@@ -174,7 +192,3 @@ Weapon* Player::removeWeapon()
 
     return pW;
 }
-
-
-
-

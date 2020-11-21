@@ -22,6 +22,9 @@
 //***********************************************************
 Room::Room(const std::string& name, int points)
 {
+    // track instance count
+    m_rCount++;
+
     m_id = ROOM_CONTAINER;
     m_name = name;
     m_points = points;
@@ -80,53 +83,54 @@ Room::Room(const std::string& name, int points)
 //***********************************************************
 Room::Room() : Room("room", ROOM_POINTS)  { }
 
+
+//***********************************************************
+// getRoomCount() : return static instance count 
+//***********************************************************
+int Room::getRoomCount() const { return m_rCount; }
+
+
 //***********************************************************
 // setEntryText()
 //***********************************************************
 void Room::setEntryText(const std::string& entryText)
-{
-    m_entryText = entryText;
-}
+{ m_entryText = entryText; }
+
 
 //***********************************************************
 // getEntryText()
 //***********************************************************
 std::string& Room::getEntryText(std::string& str) const
-{
-    return str = m_entryText;
-}
+{ return str = m_entryText; }
+
 
 //***********************************************************
 // setExitText()
 //***********************************************************
 void Room::setExitText(const std::string& exitText)
-{
-    m_exitText = exitText;
-}
+{ m_exitText = exitText; }
+
 
 //***********************************************************
 // getExitText()
 //***********************************************************
 std::string& Room::getExitText(std::string& str) const
-{
-    return str = m_exitText;
-}
+{ return str = m_exitText; }
+
 
 //***********************************************************
 // setDirectionText()
 //***********************************************************
 void Room::setDirectionText(int direction, const std::string& str)
-{
-    m_roomTextArray[direction] = str;
-}
+{ m_roomTextArray[direction] = str; }
+
 
 //***********************************************************
 // getRoomDirectionText()
 //***********************************************************
 std::string& Room::getDirectionText(int direction, std::string& str) const
-{
-     return str = m_roomTextArray[direction];
- }
+{ return str = m_roomTextArray[direction]; }
+
 
 //***********************************************************
 // setDirectionPtr()
@@ -134,9 +138,8 @@ std::string& Room::getDirectionText(int direction, std::string& str) const
 // set the pointer to the next Room in this direction
 //***********************************************************
 void Room::setDirectionPtr(int direction, Room* pRoom)
-{
-    m_nextRoomPtrArray[direction] = pRoom;
-}
+{ m_nextRoomPtrArray[direction] = pRoom; }
+
 
 //***********************************************************
 // getDirectionPtr()
@@ -144,7 +147,5 @@ void Room::setDirectionPtr(int direction, Room* pRoom)
 // return pointer to the next Room in given direction
 //***********************************************************
 Room* Room::getDirectionPtr(int direction) const 
-{ 
-    return m_nextRoomPtrArray[direction];
-}
+{ return m_nextRoomPtrArray[direction]; }
 

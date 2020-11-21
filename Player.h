@@ -17,10 +17,15 @@
 
 constexpr int PLAYER_LIVES = 3;
 
+//----------------------------------------------------------
+// Player class derived from base class for containers
+//----------------------------------------------------------
 class Player : public Container
 {
 private:
-    int m_nLives;   // number of lives
+    static int m_pCount; // how many instances exist in game
+
+    int m_nLives;        // number of lives
     std::vector<Room*> m_pRoomsVisitedV;
 
 public:
@@ -30,6 +35,8 @@ public:
     // players will persist for app lifetime
     // so destructor not needed
     //~Player();
+
+    int getPlayerCount() const;
 
     int getLives() const;
     int setLives(int n);

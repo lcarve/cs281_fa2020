@@ -20,6 +20,9 @@ int constexpr BOGEY_POINTS = 100;
 //----------------------------------------------------------
 class Bogey : public CarryIt
 {
+private:
+    static int m_bCount;
+
 public:
     Bogey();
     Bogey(std::string name);
@@ -28,6 +31,7 @@ public:
     // so destructor not needed
     //~Bogey();
 
+    int getBogeyCount() const;
 };
 
 #endif

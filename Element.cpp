@@ -16,46 +16,46 @@
 Element::Element() 
 { 
     m_points = 0; 
-    m_id = GENERIC_ELEMENT; 
+    m_id = GENERIC_ELEMENT;
 }
+
 
 //***********************************************************
 // setId() not used because constructor sets m_id
 //***********************************************************
+
 
 //***********************************************************
 // getId() 
 //***********************************************************
 int Element::getId() const { return m_id; }
 
+
 //***********************************************************
 // setName()
 //***********************************************************
-void Element::setName(const std::string& name)
-{ 
-    m_name = name;
-}
+void Element::setName(const std::string& name) 
+{ m_name = name; }
+
 
 //***********************************************************
 // getName()
 //***********************************************************
 std::string& Element::getName(std::string& name) const
-{
-    return name = m_name;
-}
+{ return name = m_name; }
+
 
 //***********************************************************
 // setPoints()
 //***********************************************************
-void Element::setPoints(int points)
-{
-    m_points = points;
-}
+void Element::setPoints(int points) { m_points = points; }
+
 
 //***********************************************************
 // getPoints()
 //***********************************************************
 int Element::getPoints() const { return m_points; }
+
 
 //***********************************************************
 // addPoints()
@@ -63,22 +63,19 @@ int Element::getPoints() const { return m_points; }
 // adds passed value to container's points
 //***********************************************************
 int Element::addPoints(int points)
-{
-    return m_points += points;
-}
+{ return m_points += points; }
+
 
 //***********************************************************
 // setText()
 //***********************************************************
 void Element::setText(const std::string& text)
-{
-    m_text = text;
-}
+{ m_text = text; }
+
 
 //***********************************************************
 // getText()
 //***********************************************************
 std::string& Element::getText(std::string& text) const
-{
-    return text = m_text;
-}
+{ return text = m_text; }
+

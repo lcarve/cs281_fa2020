@@ -16,6 +16,9 @@
 //***********************************************************
 Bogey::Bogey(std::string name, int points)
 { 
+    // track instance count
+    m_bCount++;
+
     m_id = BOGEY_CARRYIT;
     m_name = name;
     m_points = points;
@@ -26,12 +29,9 @@ Bogey::Bogey(std::string name, int points)
 //
 // overload constructor 2 of 2
 //***********************************************************
-Bogey::Bogey(std::string name)
-{
-    m_id = BOGEY_CARRYIT;
-    m_name = name;
-    m_points = BOGEY_POINTS;
-}
+Bogey::Bogey(std::string name) : Bogey(name, BOGEY_POINTS)
+{   }
+
 
 //***********************************************************
 // Bogey()
@@ -39,3 +39,9 @@ Bogey::Bogey(std::string name)
 // constructor
 //***********************************************************
 Bogey::Bogey() : Bogey("bogie", BOGEY_POINTS) { }
+
+
+//***********************************************************
+// getBogeyCount() : return static instance count 
+//***********************************************************
+int Bogey::getBogeyCount() const { return m_bCount; }

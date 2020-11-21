@@ -20,6 +20,9 @@
 //***********************************************************
 Treasure::Treasure(const std::string& tName, int points)
 {
+    // track instance count
+    m_tCount++;
+
     m_id = TREASURE_CARRYIT;
     m_name = tName;
     m_points = points;
@@ -32,4 +35,12 @@ Treasure::Treasure(const std::string& tName, int points)
 //***********************************************************
 Treasure::Treasure() : Treasure("untold treasure", TREASURE_POINTS)
 { }
+
+
+//***********************************************************
+// getTreasureCount() : return static instance count 
+//***********************************************************
+int Treasure::getTreasureCount() const { return m_tCount; }
+
+
 

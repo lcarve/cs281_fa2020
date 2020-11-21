@@ -24,12 +24,16 @@ class Weapon : public CarryIt
 private:
     int m_usesRemaining;
 
+    static int m_wCount; // how many instances exist in game
+
 public:
     Weapon();
     Weapon(const std::string& wName, int points);
     // Weapon persists for app lifetime
     // so destructor not needed
     //~Weapon();
+
+    int getWeaponCount() const;
 
     int setUsesRemaining(int uses);
     int getUsesRemaining() const;

@@ -27,7 +27,13 @@ Room* g_pLakeHoudini    = nullptr;
 Room* g_pSiliconDesert  = nullptr;
 Room* g_pMagicMountains = nullptr;
 
-Player* pForNewFeature;
+//initialize static class instance counts
+int Player::m_pCount = 0;
+int Room::m_rCount = 0;
+int Treasure::m_tCount = 0;
+int Weapon::m_wCount = 0;
+int Bogey::m_bCount = 0;
+
 
 /******************************************************************************
 * int main()
@@ -51,10 +57,6 @@ int main()
     g_pSiliconDesert = initSiliconDesert();
     g_pMagicMountains = initMagicMountains();
     // init game rooms done
-
-    // #TODO
-    //Weapon* pTest = selectWeapon("Sword");
-
 
     // all global pointers now valid for use as Room map pointers
     initRoomMap();

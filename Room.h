@@ -63,6 +63,9 @@ int constexpr ROOM_ERROR = -3;
 class Room : public Container
 {
 private:
+    // how many instances exist in game
+    static int m_rCount;
+
     // text to display for each direction in Room
     std::array <std::string, ROOM_NDIR> m_roomTextArray;
 
@@ -79,6 +82,8 @@ public:
     // rooms will persist for app lifetime
     // so destructor not needed
     //~Room();
+
+    int getRoomCount() const;
 
     void setEntryText(const std::string& str);
     std::string& getEntryText(std::string& str) const;

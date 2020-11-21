@@ -21,6 +21,7 @@ int constexpr TREASURE_POINTS = 100;
 class Treasure : public CarryIt
 {
 private:
+    static int m_tCount; // how many instances exist in game
 
 public:
     Treasure();
@@ -28,6 +29,9 @@ public:
     // Treasure persists for app lifetime
     // so destructor not needed
     //~Treasure();
+
+    int getTreasureCount() const;
+
 
 };
 

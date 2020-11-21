@@ -99,10 +99,7 @@ int getInventory(Container* pC, std::vector<std::string>& msgQ)
 
         // display Treasure name only
         for (Treasure* pT : pTreasureV)
-        {
-            pT->getName(str);
-            ss << str << " (" << pT->getPoints() << ")\n";
-        }
+            ss << pT->getName(str) << " (" << pT->getPoints() << ")\n";
 
         msgQ.push_back(ss.str());
     }
@@ -140,17 +137,28 @@ bool getInfo(Player* pP, Room* pR, std::vector<std::string>& msgQ)
     // build visited Room list
     ss << "You have visited " << nVisits;
     if (nVisits > 1) 
-        ss << " dimensions:";
+        ss << " dimensions:\n";
     else
-        ss << " dimension:";
+        ss << " dimension:\n";
     msgQ.push_back(ss.str());
 
     for (Room* pR : pRoomVisitsV)
     {
         std::string str;
-        pR->getName(str);
-        msgQ.push_back(str);
+        ss << pR->getName(str) << "\n";
     }
+
+    // display count of each class instance
+    ss << "\n";
+    ss << "Total players: " << pP->getPlayerCount() << "\n";
+    ss << "Total dimensions: " << pR->getRoomCount() << "\n";
+    Treasure t;
+    ss << "Total treasures: " << t.getTreasureCount() << "\n";
+    Weapon w;
+    ss << "Total weapons: " << w.getWeaponCount() << "\n";
+    Bogey b;
+    ss << "Total unfriendlies: " << b.getBogeyCount() << "\n";
+    msgQ.push_back(ss.str());
 
     return true;
 }
