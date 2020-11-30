@@ -66,8 +66,8 @@ Room* initBayOfLune()
     // set Room text for entry, exit, and every direction
     pRoom->setEntryText("You are swimming in the clear, cold Bay of Lune.");
     pRoom->setExitText("You are emerging from the Bay of Lune.");
-    pRoom->setDirectionText(ROOM_NORTH, "Too hazy to see North");
-    pRoom->setDirectionText(ROOM_SOUTH, "Coco Tar Pit to the South");
+    pRoom->setDirectionText(ROOM_NORTH, "Lake Houdini to the North");
+    pRoom->setDirectionText(ROOM_SOUTH, "Silicon Desert to the South");
     pRoom->setDirectionText(ROOM_EAST, "Moonscape Isle to the East");
     pRoom->setDirectionText(ROOM_WEST, "The Nexus to the West");
     pRoom->setDirectionText(ROOM_UP, "Cloudy skies above");
@@ -103,8 +103,8 @@ Room* initLakeHoudini()
     pRoom->setExitText("You turn away from Lake Houdini.");
     pRoom->setDirectionText(ROOM_NORTH, "Coco Tar Pit to the North");
     pRoom->setDirectionText(ROOM_SOUTH, "The Nexus to the South");
-    pRoom->setDirectionText(ROOM_EAST, "Moonscape Isle to the East");
-    pRoom->setDirectionText(ROOM_WEST, "Swampy Marsh to the West");
+    pRoom->setDirectionText(ROOM_EAST, "Bay of Lune to the East");
+    pRoom->setDirectionText(ROOM_WEST, "Magic Mountains to the West");
     pRoom->setDirectionText(ROOM_UP, "Cloudy skies above");
     pRoom->setDirectionText(ROOM_DOWN, "Little fishes and pollywogs in clear water below");
 
@@ -138,8 +138,8 @@ Room* initSiliconDesert()
     pRoom->setExitText("You turn away from the Silicon Desert's crunchy mess of E-waste");
     pRoom->setDirectionText(ROOM_NORTH, "The Nexus to the North");
     pRoom->setDirectionText(ROOM_SOUTH, "You see nothing but E-waste and a hazy horizon to the South");
-    pRoom->setDirectionText(ROOM_EAST, "Circuit boards all the way to the thunderheads on the horizon to the East");
-    pRoom->setDirectionText(ROOM_WEST, "A stand of Joshua trees rises above the littered desert floor to the West");
+    pRoom->setDirectionText(ROOM_EAST, "E-waste all the way to the Bay of Lune to the East");
+    pRoom->setDirectionText(ROOM_WEST, "Magic Mountains to the West");
     pRoom->setDirectionText(ROOM_UP, "Cloudy skies above");
     pRoom->setDirectionText(ROOM_DOWN, "Plenty of salvage opportunities at your feet!");
 
@@ -158,8 +158,8 @@ Room* initMagicMountains()
     // set Room text for entry, exit, and every direction
     pRoom->setEntryText("the view is fantastic!");
     pRoom->setExitText("You gingerly descend from your perch high in the Magic Mountains.");
-    pRoom->setDirectionText(ROOM_NORTH, "Hundreds of acres of pine forest extending to the North horizon");
-    pRoom->setDirectionText(ROOM_SOUTH, "Dark rain clouds are rolling in from the South");
+    pRoom->setDirectionText(ROOM_NORTH, "Lake Houdini just visible on the North horizon");
+    pRoom->setDirectionText(ROOM_SOUTH, "Silicon Desert E-wasteland to the South");
     pRoom->setDirectionText(ROOM_EAST, "The Nexus to the East");
     pRoom->setDirectionText(ROOM_WEST, "Sunset to the West");
     pRoom->setDirectionText(ROOM_UP, "Cloudy skies above");

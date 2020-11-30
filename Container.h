@@ -32,6 +32,9 @@ public:
     // so destructor not needed
     //~Container();
 
+    // copy constructor
+    Container(const Container& rhsC);
+
     // Treasure management
     int addTreasure(Treasure* pT);
     Treasure* removeTreasure();
@@ -55,6 +58,9 @@ public:
     int getBogeyCount() const;
     int getBogeyInfo(std::vector<Bogey*>& pBV);
     void removeAllBogey();
+
+    // overload comparison operator ==
+    bool operator== (const Container& rhsC);
 
 private:
     template <class I>

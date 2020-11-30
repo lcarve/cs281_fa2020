@@ -35,7 +35,7 @@ bool grabTreasure(Player* pP, Room* pR, std::vector<std::string>& msgQ)
         // display Bogey text
         std::string str;
         pB->getText(str);
-        msgQ.push_back("The unfriendly says " + str);
+        msgQ.push_back("The unfriendly yells " + str + " and attacks you!");
 
         return false;
     }

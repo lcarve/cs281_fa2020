@@ -31,8 +31,6 @@ public:
     //~Treasure();
 
     int getTreasureCount() const;
-
-
 };
 
 #endif

@@ -11,14 +11,29 @@
 #include "Container.h"
 
 //***********************************************************
-// Container(string name)
-//
 // constructor
 //***********************************************************
 Container::Container()
 {
     m_id = GENERIC_CONTAINER;
     m_name = "container";
+}
+
+//***********************************************************
+// copy constructor
+//***********************************************************
+Container::Container(const Container& rhsC)
+{
+    m_id = rhsC.m_id;                  // identifies type
+    m_name = rhsC.m_name;              // element name
+    m_text = rhsC.m_text;              // descriptive text
+    m_points = rhsC.m_points;          // accumulated points
+
+    // copy vectors
+    m_pTreasureV = rhsC.m_pTreasureV;  // accumulated Treasure
+    m_pWeaponV = rhsC.m_pWeaponV;      // accumulated Weapons
+    m_pBogeyV = rhsC.m_pBogeyV;        // accumulated Bogeys
+
 }
 
 //***********************************************************
@@ -291,11 +306,19 @@ I* Container::selectItem(const std::string& iName,
     for (auto pI : pIV)
     {
         // check for matching item name
-        pI->getName(str);
-        if (iName.compare(str))
+        if (iName.compare(pI->getName(str)))
             return pI;
     }
 
     return nullptr;
+}
+
+
+//***********************************************************
+// overload comparison operator ==
+//***********************************************************
+bool Container::operator== (const Container& rhsC)
+{
+    return (m_name == rhsC.m_name && m_points == rhsC.m_points);
 }
 

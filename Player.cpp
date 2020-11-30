@@ -76,7 +76,7 @@ int Player::addLives(int n) { return m_nLives += n; }
 //***********************************************************
 // loseLife()
 //***********************************************************
-int Player::loseLife() { return m_nLives--; }
+int Player::loseLife() { return --m_nLives; }
 
 
 //***********************************************************

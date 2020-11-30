@@ -54,3 +54,21 @@ int CarryIt::addPower(int morePower)
 {
     return m_power += morePower;
 }
+
+//***********************************************************
+// overload insertion operator << 
+//***********************************************************
+std::ostream& operator<< (std::ostream& os, const CarryIt& item)
+{
+    std::string str;
+    os << item.getName(str);
+    
+    // Treasure power means nothing so don't display it 
+    if (item.getId() != TREASURE_CARRYIT)
+        os << " [" << item.getPower() << "]";
+        
+    os << " (" << item.getPoints() << ")\n";
+
+    return os;
+}
+

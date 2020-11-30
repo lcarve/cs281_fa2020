@@ -43,12 +43,17 @@ int getInventory(Container* pC, std::vector<std::string>& msgQ)
         else
             ss << "You've defeated an unfriendly!\n";
 
-        // display Bogey name and power
+        // display Bogey name, power, and points
         for (Bogey* pB : pBogeyV)
         {
-            pB->getName(str);
-            ss << str << " [" << pB->getPower()
-                << "] (" << pB->getPoints() << ")\n";
+            // before overloading insertion operator <<
+
+            //ss << pB->getName(str) << " [" << pB->getPower()
+            //    << "] (" << pB->getPoints() << ")\n";
+
+            // after overloading insertion operator <<
+
+            ss << *pB;
         }
 
         msgQ.push_back(ss.str());
@@ -73,9 +78,14 @@ int getInventory(Container* pC, std::vector<std::string>& msgQ)
         // display Weapon name, power, and points
         for (Weapon* pW : pWeaponV)
         {
-            pW->getName(str);
-            ss << str << " [" << pW->getPower() 
-                << "] (" << pW->getPoints() << ")\n";
+            // before overloading insertion operator <<
+
+            //ss << pW->getName(str) << " [" << pW->getPower() 
+            //    << "] (" << pW->getPoints() << ")\n";
+
+            // after overloading insertion operator <<
+
+            ss << *pW;
         }
 
         msgQ.push_back(ss.str());
@@ -97,9 +107,14 @@ int getInventory(Container* pC, std::vector<std::string>& msgQ)
         else
             ss << "You have treasure!\n";
 
-        // display Treasure name only
+        // display Treasure name and points only
         for (Treasure* pT : pTreasureV)
-            ss << pT->getName(str) << " (" << pT->getPoints() << ")\n";
+            // before overloading insertion operator <<
+
+            //ss << pT->getName(str) << " (" << pT->getPoints() << ")\n";
+
+            // after overloading insertion operator <<
+            ss << *pT;
 
         msgQ.push_back(ss.str());
     }
@@ -173,8 +188,7 @@ bool getAllInfo(Player* pP, Room* pR, std::vector<std::string>& msgQ)
 {
     // display current Room name
     std::string str;
-    pR->getName(str);
-    msgQ.push_back("You're in " + str + ".");
+    msgQ.push_back("You're in " + pR->getName(str) + ".");
 
     getInfo(pP, pR, msgQ);
 
