@@ -33,7 +33,8 @@ public:
     // so destructor not needed
     //~Weapon();
 
-    int getWeaponCount() const;
+    // static member function allows call without a class instance
+    static int getWeaponCount();
 
     int setUsesRemaining(int uses);
     int getUsesRemaining() const;

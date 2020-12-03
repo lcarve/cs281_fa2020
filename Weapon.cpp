@@ -42,7 +42,7 @@ Weapon::Weapon() : Weapon("weapon of protection", WEAPON_POINTS)
 //***********************************************************
 // getWeaponCount() : return static instance count 
 //***********************************************************
-int Weapon::getWeaponCount() const { return m_wCount; }
+int Weapon::getWeaponCount() { return m_wCount; }
 
 
 //***********************************************************

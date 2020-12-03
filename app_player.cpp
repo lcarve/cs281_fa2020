@@ -199,11 +199,31 @@ bool interAct(Player * pP, Room * pR, std::vector<std::string> & msgQ)
         return true;
     }
 
+    // get last Bogey stored in vector
+    std::vector<Bogey*> bV;
+    pR->getBogeyInfo(bV);
+    Bogey* pB = bV.back();
+    int bPower = pB->getPower();
+
     // check for Weapon in Player vector
     if (pP->getWeaponCount() == 0)
     {
-        msgQ.push_back("Oh no! You have nothing to defend yourself with!");
-        return false;
+        if (!hasMagicWord())
+        {
+            msgQ.push_back("Oh no! You have no weapons or spells to defend yourself with!");
+            return false;
+        }
+        else
+        {
+            msgQ.push_back("Excellent! You are victorious!");
+
+            // award points and add Bogey notch to Player's belt
+            pP->addPoints(pB->getPoints());
+            pR->removeBogey();
+            pP->addBogey(pB);
+
+            return true;
+        }
     }
 
     // get last Weapon stored in vector
@@ -211,12 +231,6 @@ bool interAct(Player * pP, Room * pR, std::vector<std::string> & msgQ)
     pP->getWeaponInfo(wV);
     Weapon* pW = wV.back();
     int wPower = pW->getPower();
-
-    // get last Bogey stored in vector
-    std::vector<Bogey*> bV;
-    pR->getBogeyInfo(bV);
-    Bogey* pB = bV.back();
-    int bPower = pB->getPower();
 
     // get Weapon and Bogey names
     std::string wName, bName;
@@ -357,15 +371,17 @@ bool visitRoom(Player* pP, Room* pR, std::vector<std::string>& msgQ)
     return true;
 }
 
-/******************************************************************************
-* doMagicWord()
-*
-* Player uses magic word
-* queue messages for display
-*******************************************************************************
-*/
-bool doMagicWord(Player* pP, Room* pR, std::vector<std::string>& msgQ)
+//***********************************************************
+// hasMagicWord()
+//
+// returns true if the Player can provide the Magic Word,
+// false otherwise
+//***********************************************************
+bool hasMagicWord()
 {
-    
-    return true;
+    std::string str;
+    std::cout << "\nUh-oh, you have no weapons. Quick! What's the magic word? ";
+    std::cin >> str;
+
+    return !(str.compare("xyzzy"));
 }

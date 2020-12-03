@@ -31,7 +31,8 @@ public:
     // so destructor not needed
     //~Bogey();
 
-    int getBogeyCount() const;
+    // static member function allows call without a class instance
+    static int getBogeyCount();
 };
 
 #endif

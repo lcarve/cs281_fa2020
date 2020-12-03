@@ -30,7 +30,8 @@ public:
     // so destructor not needed
     //~Treasure();
 
-    int getTreasureCount() const;
+    // static member function allows call without a class instance
+    static int getTreasureCount();
 };
 
 #endif

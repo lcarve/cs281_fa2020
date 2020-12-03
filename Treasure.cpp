@@ -44,7 +44,7 @@ Treasure::Treasure() : Treasure("untold treasure", TREASURE_POINTS)
 //***********************************************************
 // getTreasureCount() : return static instance count 
 //***********************************************************
-int Treasure::getTreasureCount() const { return m_tCount; }
+int Treasure::getTreasureCount() { return m_tCount; }
 
 
 

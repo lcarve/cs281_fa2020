@@ -2,7 +2,7 @@
 * CarryIt.h
 * CS 281-0798, Fall 2020
 *
-* CarryIt pure abstract class declaration
+* CarryIt base class declaration
 *******************************************************************************
 */
 #ifndef CARRYIT_H
@@ -37,10 +37,6 @@ public:
     void setPower(int power);
     int getPower() const;
     int addPower(int morePower);
-
-    // insertion operator overloading function must either
-    //      1) be declared as a friend, or
-    //      2) be defined inside the class
 
     friend std::ostream& operator<< (std::ostream& os, const CarryIt &item);
 };

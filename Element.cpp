@@ -2,7 +2,8 @@
 * Element.cpp
 * CS 281-0798, Fall 2020
 *
-* Element class definition
+* Element base class definition
+* All classes for this game are derived from Element
 *******************************************************************************
 */
 #include <string>

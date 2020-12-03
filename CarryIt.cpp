@@ -2,7 +2,7 @@
 * CarryIt.cpp
 * CS 281-0798, Fall 2020
 *
-* CarryIt abstract class definition
+* CarryIt base class definition
 *******************************************************************************
 */
 #include <string>

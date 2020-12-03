@@ -48,4 +48,4 @@ Bogey::Bogey() : Bogey("bogie", BOGEY_POINTS) { }
 //***********************************************************
 // getBogeyCount() : return static instance count 
 //***********************************************************
-int Bogey::getBogeyCount() const { return m_bCount; }
+int Bogey::getBogeyCount() { return m_bCount; }

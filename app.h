@@ -44,7 +44,7 @@ char defendSelf(Player* pP, Room* pR, std::vector<std::string>& msgQ);
 bool lookAllDirections(Room* pR, std::vector<std::string>& msgQ);
 Room* movePlayer(Player* pP, Room* pR, int direction, std::vector<std::string>& msgQ);
 bool visitRoom(Player* pP, Room* pR, std::vector<std::string>& msgQ);
-bool doMagicWord(Player* pP, Room* pR, std::vector<std::string>& msgQ);
+bool hasMagicWord();
 
 
 // app_util.cpp: Room initialization and management functions

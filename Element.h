@@ -2,7 +2,8 @@
 * Element.h
 * CS 281-0798, Fall 2020
 *
-* Element class declaration
+* Element base class declaration
+* All classes for this game are derived from Element
 *******************************************************************************
 */
 #ifndef ELEMENT_H

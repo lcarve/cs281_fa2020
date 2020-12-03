@@ -155,7 +155,6 @@ bool getInfo(Player* pP, Room* pR, std::vector<std::string>& msgQ)
         ss << " dimensions:\n";
     else
         ss << " dimension:\n";
-    msgQ.push_back(ss.str());
 
     for (Room* pR : pRoomVisitsV)
     {
@@ -167,12 +166,9 @@ bool getInfo(Player* pP, Room* pR, std::vector<std::string>& msgQ)
     ss << "\n";
     ss << "Total players: " << pP->getPlayerCount() << "\n";
     ss << "Total dimensions: " << pR->getRoomCount() << "\n";
-    Treasure t;
-    ss << "Total treasures: " << t.getTreasureCount() << "\n";
-    Weapon w;
-    ss << "Total weapons: " << w.getWeaponCount() << "\n";
-    Bogey b;
-    ss << "Total unfriendlies: " << b.getBogeyCount() << "\n";
+    ss << "Total treasures: " << Treasure::getTreasureCount() << "\n";
+    ss << "Total weapons: " << Weapon::getWeaponCount() << "\n";
+    ss << "Total unfriendlies: " << Bogey::getBogeyCount() << "\n";
     msgQ.push_back(ss.str());
 
     return true;

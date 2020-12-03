@@ -52,11 +52,6 @@ int main()
     // all global pointers now valid for use as Room map pointers
     initRoomMap();
 
-    // #TODO test copy constructor and overloaded comparison operator ==
-    Room pTest = *g_pNexus;
-    if (pTest == *g_pNexus)
-        std::cout << "pTest and g_pNexus are the same!\n";
-
     // #TODO put Player in starting Room of your choice
     // set utility pointer used throughout app main()
     Room* pRoom = g_pNexus;
@@ -123,8 +118,8 @@ int main()
         // I)nfo command
         else if (userCmd == 'i')
             getAllInfo(pPlayer, pRoom, messageQueue);
-        else if (userCmd == 'm')
-            doMagicWord(pPlayer, pRoom, messageQueue);
+        //else if (userCmd == 'm')
+        //    doMagicWord(pPlayer, pRoom, messageQueue);
         // Q)uit command 
         else if (userCmd == 'q')
             messageQueue.push_back("Leaving so soon?");
